@@ -14,6 +14,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 <link href="{{ asset('/') }}backend/assets/css/app.css" rel="stylesheet">
 <link href="{{ asset('/') }}backend/assets/css/icons.css" rel="stylesheet">
+
+<!-- Data Table Style CSS -->
+<link href="{{ asset('/') }}backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<!-- End Data Table Style CSS -->
+
 <!-- Theme Style CSS -->
 <link rel="stylesheet" href="{{ asset('/') }}backend/assets/css/dark-theme.css"/>
 <link rel="stylesheet" href="{{ asset('/') }}backend/assets/css/semi-dark.css"/>
