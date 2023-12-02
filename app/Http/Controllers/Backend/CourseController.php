@@ -45,7 +45,7 @@ class CourseController extends Controller
         $video = $request->file('video');
         $videoName = time().'.'.$video->getClientOriginalExtension();
         $video->move(public_path('upload/course/video/'),$videoName);
-        $save_video = 'upload/course/thumbnail/'.$videoName;
+        $save_video = 'upload/course/video/'.$videoName;
 
         $course_id = Course::insertGetId([
             'category_id' => $request->category_id,
@@ -88,6 +88,103 @@ class CourseController extends Controller
         );
 
         return redirect()->route('all.course')->with($notification);
+
+    }
+
+    public function EditCourse($id){
+        $course = Course::find($id);
+        $categories = Category::latest()->get();
+        $subCategories = SubCategory::latest()->get();
+        return view('instructor.courses.edit_course',compact('course','categories', 'subCategories'));
+    }
+
+    public function UpdateCourse(Request $request){
+        $courseId = $request->course_id;
+
+        Course::find($courseId)->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'instructor_id' => Auth::user()->id,
+            'course_title' => $request->course_title,
+            'course_name' => $request->course_name,
+            'course_name_slug' => strtolower(str_replace(' ', '-', $request->course_name)),
+            'description' => $request->description,
+
+            'label' => $request->label,
+            'duration' => $request->duration,
+            'resources' => $request->resources,
+            'certificate' => $request->certificate,
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+            'prerequisites' => $request->prerequisites,
+
+            'bestseller' => $request->bestseller,
+            'featured' => $request->featured,
+            'highestrated' => $request->highestrated,
+        ]);
+
+
+        $notification = array(
+            'message' => 'Course Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('all.course')->with($notification);
+
+    }
+
+    public function UpdateCourseImage(Request $request){
+        $course_id = $request->id;
+        $oldImage = $request->old_img;
+
+        $image = $request->file('course_image');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(370,246)->save('upload/course/thumbnail/'.$name_gen);
+        $save_url = 'upload/course/thumbnail/'.$name_gen;
+
+        if ($oldImage){
+            unlink($oldImage);
+        }
+
+        Course::find($course_id)->update([
+            'course_image' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Course Image Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
+
+
+    public function UpdateCourseVideo(Request $request){
+        $course_id = $request->vid;
+        $oldVideo = $request->old_vid;
+
+        $video = $request->file('video');
+        $videoName = time().'.'.$video->getClientOriginalExtension();
+        $video->move(public_path('upload/course/video/'),$videoName);
+        $save_video = 'upload/course/video/'.$videoName;
+
+        if ($oldVideo){
+            unlink($oldVideo);
+        }
+
+        Course::find($course_id)->update([
+            'video' => $save_video,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Course Video Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
 
     }
 }
