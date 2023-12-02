@@ -207,8 +207,30 @@ class CourseController extends Controller
             }
 
         }
+
         $notification = array(
             'message' => 'Course Goal Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function DeleteCourse($id){
+        $course = Course::find($id);
+
+        unlink($course->course_image);
+        unlink($course->video);
+
+        Course::find($id)->delete();
+
+        $goalData = CourseGoal::where('course_id',$id)->get();
+        foreach ($goalData as $item){
+            $item->goal_name;
+            CourseGoal::where('course_id',$id)->delete();
+        }
+        $notification = array(
+            'message' => 'Course Goal Deleted Successfully.',
             'alert-type' => 'success',
         );
 
