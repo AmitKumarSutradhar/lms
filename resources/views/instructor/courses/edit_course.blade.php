@@ -2,6 +2,7 @@
 
 @section('body')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -197,7 +198,48 @@
         </div>
     </div>
 
-    {{--    End Course Image Update Part --}}
+{{--    End Course Image & Video Update Part --}}
+
+    <div class="page-content">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="mb-4">Add Course</h5>
+                <form id="myForm" action="{{ route('update.course.goal') }}" method="post" class="row g-3" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $course->id }}">
+                    @foreach($goals as $item)
+                        <!--   Goal Option  -->
+                            <div class="row add_item">
+                                <div class="whole_extra_item_delete" id="whole_extra_item_delete">
+                                    <div class="container mt-2">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="mb-3">
+                                                    <label for="goals" class="form-label"> Goals </label>
+                                                    <input type="text" name="course_goals[]" value="{{ $item->goal_name }}" id="goals" class="form-control" placeholder="Goals ">
+                                                </div>
+                                            </div>
+                                            <div class=" col-md-4" style="padding-top: 30px;">
+                                                <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add More..</a>
+                                                <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle">Remove</i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!---end row-->
+            <!--   End Goal Option  -->
+                    @endforeach
+                    <div class="col-md-12">
+                        <div class="d-md-flex d-grid align-items-center gap-3">
+                            <button type="submit" class="btn btn-primary px-4">Update Course Info</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <!--========== Start of add multiple class with ajax ==============-->
@@ -207,7 +249,6 @@
                 <div class="container mt-2">
                     <div class="row">
 
-
                         <div class="form-group col-md-6">
                             <label for="goals">Goals</label>
                             <input type="text" name="course_goals[]" id="goals" class="form-control" placeholder="Goals  ">
@@ -216,6 +257,7 @@
                             <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle">Add</i></span>
                             <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle">Remove</i></span>
                         </div>
+
                     </div>
                 </div>
             </div>

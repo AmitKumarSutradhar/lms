@@ -93,9 +93,10 @@ class CourseController extends Controller
 
     public function EditCourse($id){
         $course = Course::find($id);
+        $goals = CourseGoal::where('course_id',$id)->get();
         $categories = Category::latest()->get();
         $subCategories = SubCategory::latest()->get();
-        return view('instructor.courses.edit_course',compact('course','categories', 'subCategories'));
+        return view('instructor.courses.edit_course',compact('course','goals','categories', 'subCategories'));
     }
 
     public function UpdateCourse(Request $request){
@@ -186,5 +187,31 @@ class CourseController extends Controller
 
         return redirect()->back()->with($notification);
 
+    }
+
+    public function UpdateCourseGoal(Request $request){
+        $cid = $request->id;
+
+        if ($request->course_goals == NULL){
+            return redirect()->back();
+        } else{
+            //        Course Goal Add Form
+            CourseGoal::where('course_id',$cid)->delete();
+            $goals = Count($request->course_goals);
+
+            for ($i=0; $i<$goals; $i++){
+                $gcount = new CourseGoal();
+                $gcount->course_id = $cid;
+                $gcount->goal_name = $request->course_goals[$i];
+                $gcount->save();
+            }
+
+        }
+        $notification = array(
+            'message' => 'Course Goal Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

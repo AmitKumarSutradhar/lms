@@ -124,7 +124,7 @@
                                 <input type="text" name="course_goals[]" id="goals" class="form-control" placeholder="Goals ">
                             </div>
                         </div>
-                        <div class="form-group col-md-2 style="padding-top: 30px;">
+                        <div class="form-group col-md-2" style="padding-top: 30px;">
                             <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add More..</a>
                         </div>
                     </div> <!---end row-->
