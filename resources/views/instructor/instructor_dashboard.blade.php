@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrg-token" content="{{ csrf_token() }}">
     @include('instructor.includes.style')
     <title>Rocker - Education Learning Platform</title>
 </head>
