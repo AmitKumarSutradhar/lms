@@ -274,4 +274,52 @@ class CourseController extends Controller
 
         return response()->json(['success' => 'Lecture Saved Successfully.']);
     }
+
+    public function EditLecture($id){
+        $courseLecture = CourseLecture::find($id);
+        return view('instructor.courses.lecture.edit_course_lecture',compact('courseLecture'));
+    }
+
+    public function UpdateLecture(Request $request){
+        $lid = $request->id;
+
+        CourseLecture::find($lid)->update([
+            'lecture_title' => $request->lecture_title,
+            'url' => $request->url,
+            'content' => $request->lec_content,
+        ]);
+
+        $notification = array(
+            'message' => 'Course Section Added Successfully.',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function DeleteLecture($id){
+        CourseLecture::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Course Deleted Successfully.',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function DeleteCourseSection($id){
+        $courseSection = CourseSection::find($id);
+
+//        Delete Course Lecture
+        $courseSection->lectures()->delete();
+
+//        Delete Course Section
+        $courseSection->delete();
+
+        $notification = array(
+            'message' => 'Course Section Deleted Successfully.',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    }
+
 }
