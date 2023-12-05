@@ -7,6 +7,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Frontend\IndexController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -103,4 +104,10 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
 
 });
 
+//Route Accessable by Anyone
 Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login');
+
+Route::get('/course/details/{id}/{slug}',[IndexController::class,'CourseDetails']);
+
+
+//End Route Accessable by Anyone
