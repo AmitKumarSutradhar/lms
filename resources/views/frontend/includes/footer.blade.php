@@ -4,7 +4,8 @@
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
                     <a href="index.html">
-                        <img src="{{ asset('/') }}frontend/images/logo.png" alt="footer logo" class="footer__logo">
+{{--                        <img src="{{ asset('/') }}frontend/images/logo.png" alt="footer logo" class="footer__logo">--}}
+                        <h3><b class="text-bg-dark">Edu Squar</b></h3>
                     </a>
                     <ul class="generic-list-item pt-4">
                         <li><a href="tel:+1631237884">+163 123 7884</a></li>
@@ -66,7 +67,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <p class="copy-desc">&copy; 2021 Aduca. All Rights Reserved. by <a href="https://techydevs.com/">TechyDevs</a></p>
+                    <p class="copy-desc">&copy; 2021 <a href="{{route('index')}}">Edu-Squar</a>. All Rights Reserved. by <a href="https://techydevs.com/">Amit Kumar</a></p>
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-6">
                     <div class="d-flex flex-wrap align-items-center justify-content-end">
