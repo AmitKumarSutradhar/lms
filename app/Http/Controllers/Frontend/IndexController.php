@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseGoal;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -29,5 +30,12 @@ class IndexController extends Controller
         $category = Category::where('id',$id)->first();
         $categories = Category::latest()->get();
         return view('frontend.category.category_all',compact('courses','category','categories'));
+    }
+
+    public function SubCategoryCourse($id, $slug){
+        $courses = Course::where('subcategory_id',$id)->where('status',1)->get();
+        $subcategory = SubCategory::where('id',$id)->first();
+        $categories = Category::latest()->get();
+        return view('frontend.category.subcategory_all',compact('courses','subcategory','categories'));
     }
 }

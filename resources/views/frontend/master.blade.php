@@ -16,6 +16,8 @@
     <link rel="icon" sizes="16x16" href="{{ asset('/') }}frontend/images/favicon.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/css/plyr.css">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('/') }}frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/css/line-awesome.css">
@@ -110,5 +112,7 @@
     }
     @endif
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('frontend.includes.script')
 </body>
 </html>

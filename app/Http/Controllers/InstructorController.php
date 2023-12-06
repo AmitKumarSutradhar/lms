@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,12 @@ class InstructorController extends Controller
 {
     public function InstructorLogin(){
         return view('instructor.instructor_login');
+    }
+
+    public function InstructorDetails($id){
+        $instructor = User::find($id);
+        $course = Course::where('instructor_id',$id)->get();
+        return view('frontend.instructor.instructor_details',compact('instructor','course'));
     }
 
     public function InstructorDashboard(){

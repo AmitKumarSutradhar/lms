@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\WishListController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -22,6 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/profile/logout', [UserController::class, 'userLogout'])->name('user.logout');
     Route::get('/user/change-password', [UserController::class, 'userChangePassword'])->name('user.change.password');
     Route::post('/user/change-update', [UserController::class, 'userUpdatePassword'])->name('user.password.update');
+
+
+    Route::get('user/wishlist',[WishListController::class,'AllWishlist'])->name('user.wishlist');
+    Route::get('/get-wishlist-course',[WishListController::class,'GetWishListCourse']);
 });
 
 require __DIR__.'/auth.php';
@@ -106,9 +111,13 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
 
 //Route Accessable by Anyone
 Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login');
+Route::get('/instructor/{id}',[InstructorController::class,'InstructorDetails'])->name('instructor.details');
 
 Route::get('/course/details/{id}/{slug}',[IndexController::class,'CourseDetails']);
 Route::get('/category/{id}/{slug}',[IndexController::class,'CategoryCourse']);
+Route::get('/subcategory/{id}/{slug}',[IndexController::class,'SubCategoryCourse']);
+
+Route::post('/add-to-wishlist/{id}',[WishListController::class,'AddToWishList']);
 
 
 //End Route Accessable by Anyone

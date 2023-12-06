@@ -29,7 +29,7 @@
                             <div class="col-lg-4 responsive-column-half">
                             <div class="card card-item card-preview tooltipstered" data-tooltip-content="#tooltip_content_1{{$course->id}}">
                                 <div class="card-image">
-                                    <a href="course-details.html" class="d-block">
+                                    <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
                                         <img class="card-img-top lazy" src="{{ asset($course->course_image) }}" alt="Card image cap" style="">
                                     </a>
                                     @php
@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                     <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
                                     <h5 class="card-title"><a href="course-details.html">{{ $course->course_name }}</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">{{ $course['user']['name'] }}</a></p>
+                                    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
                                     <div class="rating-wrap d-flex align-items-center py-2">
                                         <div class="review-stars">
                                             <span class="rating-number">4.4</span>
@@ -95,14 +95,14 @@
                         <div class="col-lg-4 responsive-column-half">
                             <div class="card card-item card-preview tooltipstered" data-tooltip-content="#tooltip_content_1{{$course->id}}">
                                 <div class="card-image">
-                                    <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
+                                    <a href="" class="d-block">
                                         <img class="card-img-top lazy" src="{{ $course->course_image }}" alt="Card image cap" style="">
                                     </a>
                                 </div><!-- end card-image -->
                                 <div class="card-body">
                                     <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
                                     <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">{{ $course['user']['name'] }}</a></p>
+                                    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
                                     <div class="rating-wrap d-flex align-items-center py-2">
                                         <div class="review-stars">
                                             <span class="rating-number">4.4</span>
@@ -120,7 +120,7 @@
                                         @else
                                             <p class="card-price text-black font-weight-bold">${{ $course->discount_price }} <span class="before-price font-weight-medium">${{ $course->selling_price }}</span></p>
                                         @endif
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist"><i class="la la-heart-o"></i></div>
+                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" id="{{ $course->id }}" onclick="addToWishList(this.id)" title="Add to Wishlist"><i class="la la-heart-o"></i></div>
                                     </div>
                                 </div><!-- end card-body -->
                             </div><!-- end card -->
@@ -193,4 +193,5 @@
         </div><!-- end card -->
     </div>
 </div><!-- end tooltip_templates -->
+
 @endforeach
