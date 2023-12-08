@@ -84,7 +84,7 @@
                                         ` <p class="card-price text-black font-weight-bold">$${value.course.selling_price}</span></p>`
                                         : `<p class="card-price text-black font-weight-bold">$${value.course.discount_price} <span class="before-price font-weight-medium">$${value.course.selling_price}</span></p>`}
 
-                                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" data-toggle="tooltip" data-placement="top" title="Remove from Wishlist"><i class="la la-heart"></i></div>
+                                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" data-toggle="tooltip" data-placement="top" title="Remove from Wishlist" id="${ value.id }" onclick="wishlistRemove(this.id)"><i class="la la-heart"></i></div>
                                 </div>
                             </div>
                            </div>
@@ -97,5 +97,77 @@
         })
     }
     wishlist();
+
+    // Wishlist Remove
+    function wishlistRemove(id) {
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/wishlist-remove/"+id,
+
+            success: function (data) {
+                wishlist();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        icon: "success",
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: data.error
+                    });
+                }
+            }
+        })
+    }
+    // End Wishlist Remove
 </script>
 {{--End Load Wishlist Add Option--}}
+
+
+{{--Start Add to Cart Option--}}
+<script type="text/javascript">
+    function addToCart(courseId, courseName, instructorId, slug) {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {
+                _token: '{{ csrf_token() }}',
+                course_name: courseName,
+                course_name_slug: slug,
+                instructor: instructorId
+            },
+
+            url: "/cart/data/store/"+courseId,
+            success: function (data) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        icon: "success",
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: data.error
+                    });
+                }
+            }
+        })
+    }
+</script>
+{{--End Add to Cart Option--}}

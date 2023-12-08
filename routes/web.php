@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
+use App\Http\Controllers\Frontend\CartController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/wishlist',[WishListController::class,'AllWishlist'])->name('user.wishlist');
     Route::get('/get-wishlist-course',[WishListController::class,'GetWishListCourse']);
+    Route::get('/wishlist-remove/{id}',[WishListController::class,'RemoveWishlist']);
 });
 
 require __DIR__.'/auth.php';
@@ -118,6 +120,8 @@ Route::get('/category/{id}/{slug}',[IndexController::class,'CategoryCourse']);
 Route::get('/subcategory/{id}/{slug}',[IndexController::class,'SubCategoryCourse']);
 
 Route::post('/add-to-wishlist/{id}',[WishListController::class,'AddToWishList']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/cart/data/',[CartController::class,'CartData']);
 
 
 //End Route Accessable by Anyone
