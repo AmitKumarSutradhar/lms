@@ -148,6 +148,7 @@
 
             url: "/cart/data/store/"+courseId,
             success: function (data) {
+                miniCart();
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -171,3 +172,70 @@
     }
 </script>
 {{--End Add to Cart Option--}}
+
+
+{{--Mini Add to Cart Option--}}
+<script type="text/javascript">
+    function miniCart() {
+        $.ajax({
+            type: 'GET',
+            url: '/course/mini/cart',
+            dataType: 'json',
+            success: function (response) {
+                $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('#cartQty').text(response.cartQty);
+
+                var miniCart = ""
+                $.each(response.carts, function (key, value) {
+                    miniCart += `
+                        <li class="media media-card">
+                            <a href="shopping-cart.html" class="media-img">
+                                <img src="/${value.options.image}" alt="Cart image">
+                            </a>
+                            <div class="media-body">
+                                <h5><a href="/course/details/${value.id}/${value.options.slug}">${ value.name }</a></h5>
+                                <p class="text-black font-weight-semi-bold lh-18">$${ value.price } <span class="before-price fs-14"></span></p>
+                                <a type="submit" id="${ value.rowId }" onclick="miniCartRemove(this.id)"><i class="la la-times"></i></a>
+                            </div>
+                        </li>
+                    `
+                });
+                $('#miniCart').html(miniCart);
+
+            }
+        })
+    }
+    miniCart();
+
+    // Mini Cart Remove
+    function miniCartRemove(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/course/remove/'+rowId,
+            dataType: 'json',
+            success: function (data) {
+                miniCart();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        icon: "success",
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: data.error
+                    });
+                }
+            }
+        })
+    }
+    // End Mini Cart Remove
+</script>
+{{--End Mini Add to Cart Option--}}

@@ -55,7 +55,7 @@ class CartController extends Controller
 
 
 
-        return response()->json(['success' => 'Successfully Added on Your Cart', 'course' => $course]);
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
 
     }// End Method
 
@@ -69,5 +69,22 @@ class CartController extends Controller
             'cartTotal' => $cartTotal,
             'cartQty' => $cartQty,
         ));
+    }
+
+    public function AddMiniCart(){
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+    }
+
+    public function RemoveMiniCart($rowId){
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Course Remove From Cart Successfully.']);
     }
 }
