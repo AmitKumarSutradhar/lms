@@ -129,3 +129,11 @@ Route::get('/minicart/course/remove/{rowId}',[CartController::class,'RemoveMiniC
 
 
 //End Route Accessable by Anyone
+
+
+//Cart All Routes
+Route::controller(CartController::class)->group(function (){
+    Route::get('/mycart','MyCart')->name('mycart');
+    Route::get('/get-cart-course','GetCartCourse');
+    Route::get('/cart-remove/{rowId}','CartRemove');
+});
