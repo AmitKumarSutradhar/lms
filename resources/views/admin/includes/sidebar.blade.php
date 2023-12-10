@@ -37,7 +37,7 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+                <div class="parent-icon"><i class="lni lni-users"></i>
                 </div>
                 <div class="menu-title">Manage Instructor</div>
             </a>
@@ -49,12 +49,24 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+                <div class="parent-icon"><i class="lni lni-write"></i>
                 </div>
                 <div class="menu-title">Manage Courses</div>
             </a>
             <ul>
                 <li> <a href="{{ route('admin.all.course') }}"><i class='bx bx-radio-circle'></i>All Courses</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="lni lni-offer"></i>
+                </div>
+                <div class="menu-title">Manage Coupons</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.coupon') }}"><i class='bx bx-radio-circle'></i>All Coupons</a>
                 </li>
             </ul>
         </li>
