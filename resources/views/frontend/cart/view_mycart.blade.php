@@ -43,32 +43,28 @@
                     </tbody>
                 </table>
                 <div class="d-flex flex-wrap align-items-center justify-content-between pt-4">
-                    <form method="post">
-                        <div class="input-group mb-2">
-                            <input class="form-control form--control pl-3" type="text" name="search" placeholder="Coupon code">
-                            <div class="input-group-append">
-                                <button class="btn theme-btn">Apply Code</button>
+                    @if(Session::has('coupon'))
+{{--                        <pre>--}}
+{{--                            {{ json_encode(Session::get('coupon'),JSON_PRETTY_PRINT) }}--}}
+{{--                        </pre>--}}
+                    @else
+                        <form action="#">
+                            <div class="input-group mb-2" id="couponField">
+                                <input class="form-control form--control pl-3" type="text" id="coupon_name" name="  " placeholder="Coupon code">
+                                <div class="input-group-append">
+                                    <a type="submit" class="btn theme-btn text-white"  onclick="applyCoupon()">Apply Code</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    @endif
+
                     <a href="#" class="btn theme-btn mb-2">Update Cart</a>
                 </div>
             </div>
             <div class="col-lg-4 ml-auto">
-                <div class="bg-gray p-4 rounded-rounded mt-40px">
-                    <h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
-                    <div class="divider"><span></span></div>
-                    <ul class="generic-list-item pb-4">
-                        <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                            <span class="text-black">Subtotal:</span>
-                            <span id="cartSubTotal"></span>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                            <span class="text-black">Total:</span>
-                            <span id="cartSubTotal"></span>
-                        </li>
-                    </ul>
-                    <a href="checkout.html" class="btn theme-btn w-100">Checkout <i class="la la-arrow-right icon ml-1"></i></a>
+                <div class="bg-gray p-4 rounded-rounded mt-40px" id="couponCalField">
+
+                    <a href="{{ route('checkout') }}" class="btn theme-btn w-100">Checkout <i class="la la-arrow-right icon ml-1"></i></a>
                 </div>
             </div>
         </div><!-- end container -->

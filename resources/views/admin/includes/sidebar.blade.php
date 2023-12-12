@@ -39,7 +39,7 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-users"></i>
                 </div>
-                <div class="menu-title">Manage Instructor</div>
+                <div class="menu-title">Instructors</div>
             </a>
             <ul>
                 <li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a>
@@ -51,10 +51,10 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-write"></i>
                 </div>
-                <div class="menu-title">Manage Courses</div>
+                <div class="menu-title">Courses</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.all.course') }}"><i class='bx bx-radio-circle'></i>All Courses</a>
+                <li> <a href="{{ route('admin.all.course') }}"><i class='bx bx-radio-circle'></i>Manage Courses</a>
                 </li>
             </ul>
         </li>
@@ -63,10 +63,12 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-offer"></i>
                 </div>
-                <div class="menu-title">Manage Coupons</div>
+                <div class="menu-title">Coupons</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.all.coupon') }}"><i class='bx bx-radio-circle'></i>All Coupons</a>
+                <li> <a href="{{ route('admin.add.coupon') }}"><i class='bx bx-radio-circle'></i>Add Coupons</a>
+                </li>
+                <li> <a href="{{ route('admin.all.coupon') }}"><i class='bx bx-radio-circle'></i>Manage Coupons</a>
                 </li>
             </ul>
         </li>

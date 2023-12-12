@@ -42,11 +42,11 @@
     ======================================-->
 
     <!-- ================================
-           START FUNFACT AREA
+           START FUN FACT AREA
     ================================= -->
-    @include('frontend.home.courses-area-two')<!-- end funfact-area -->
+    @include('frontend.home.funfact-area')<!-- end fun fact-area -->
     <!-- ================================
-           START FUNFACT AREA
+           START FUN FACT AREA
     ================================= -->
 
     <!--======================================
