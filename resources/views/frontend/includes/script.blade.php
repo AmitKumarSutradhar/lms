@@ -173,6 +173,49 @@
 </script>
 {{--End Add to Cart Option--}}
 
+{{--Buy Now Option--}}
+<script type="text/javascript">
+    function buyCourse(courseId, courseName, instructorId, slug) {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {
+                _token: '{{ csrf_token() }}',
+                course_name: courseName,
+                course_name_slug: slug,
+                instructor: instructorId
+            },
+
+            url: "/buy/data/store/"+courseId,
+            success: function (data) {
+                miniCart();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        icon: "success",
+                        title: data.success
+                    });
+
+// Redirect to the checkout
+                    window.location.href = '/checkout';
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: data.error
+                    });
+                }
+            }
+        })
+    }
+</script>
+{{--End Buy Now Option--}}
+
 
 {{--Mini Add to Cart Option--}}
 <script type="text/javascript">
@@ -413,8 +456,6 @@
     couponCalculation();
 </script>
 {{--End Apply Coupon Cart --}}
-
-
 
 {{-- Remove Coupon --}}
 <script type="text/javascript">

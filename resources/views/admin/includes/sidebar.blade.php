@@ -72,6 +72,18 @@
                 </li>
             </ul>
         </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="lni lni-select"></i>
+                </div>
+                <div class="menu-title">Settings</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>SMTP Settings</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Charts & Maps</li>
         <li>
             <a class="has-arrow" href="javascript:;">
