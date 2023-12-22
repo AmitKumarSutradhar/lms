@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Fronend\CheckoutController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -158,11 +159,8 @@ Route::controller(CartController::class)->group(function (){
 });
 
 // Checkout All routes
-Route::controller(CartController::class)->group(function (){
-    Route::get('/mycart','MyCart')->name('mycart');
-    Route::get('/get-cart-course','GetCartCourse');
-    Route::get('/cart-remove/{rowId}','CartRemove');
-});
+Route::get('/checkout',[CheckoutController::class,'CheckoutCreate'])->name('checkout');
+Route::post('/payment',[CheckoutController::class,'Payment'])->name('payment');
 
 
 //End Route Accessable by Anyone
