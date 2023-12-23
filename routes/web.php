@@ -144,6 +144,13 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::get('/delete-lecture/{id}','DeleteLecture')->name('delete.lecture');
     });
 
+
+    //Instructor all orders routes
+    Route::controller(OrderController::class)->group(function (){
+        Route::get('/instructor/all-order','InstructorAllOrder')->name('instructor.all.order');
+        Route::get('/instructor/order-details/{payment_id}','InstructorOrderDetail')->name('instructor.order.details');
+    });
+
 });
 
 //Route Accessable by Anyone
