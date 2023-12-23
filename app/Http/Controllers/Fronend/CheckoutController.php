@@ -81,8 +81,8 @@ class CheckoutController extends Controller
             }
 
             $order = new Order();
-            $order->payment_id = Auth::user()->id;
-            $order->user_id = $data->id;
+            $order->payment_id = $data->id;
+            $order->user_id = Auth::user()->id;
             $order->course_id = $request->course_id[$key];
             $order->instructor_id = $request->instructor_id[$key];
             $order->course_title = $course_title;
@@ -103,7 +103,7 @@ class CheckoutController extends Controller
             'email' => $sendmail->email,
         ];
 
-        Mail::to($request->email)->send(new Orderconfirm($data));
+//        Mail::to($request->email)->send(new Orderconfirm($data));
 //        End Send Email to Student
 
         if ($request->cash_delivery == 'stripe'){
