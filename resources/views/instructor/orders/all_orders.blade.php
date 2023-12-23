@@ -46,7 +46,7 @@
                                 <td><span class="badge bg-success">{{ $item->payment->status }}</span></td>
                                 <td>
                                     <a href="{{ route('instructor.order.details',$item->payment->id) }}" class="btn btn-info " title="Edit Course"><i class="lni lni-eye"></i></a>
-                                    <a href="{{ route('delete.course',$item->id) }}" id="delete" class="btn btn-danger" title="Delete"><i class="lni lni-download"></i></a>
+                                    <a href="{{ route('instructor.order.invoice',$item->payment->id) }}" class="btn btn-danger" title="Delete"><i class="lni lni-download"></i></a>
                                 </td>
                             </tr>
                         @endforeach
