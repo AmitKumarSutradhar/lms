@@ -29,10 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/change-password', [UserController::class, 'userChangePassword'])->name('user.change.password');
     Route::post('/user/change-update', [UserController::class, 'userUpdatePassword'])->name('user.password.update');
 
-
+    //    Wishlist All Routes
     Route::get('user/wishlist',[WishListController::class,'AllWishlist'])->name('user.wishlist');
     Route::get('/get-wishlist-course',[WishListController::class,'GetWishListCourse']);
     Route::get('/wishlist-remove/{id}',[WishListController::class,'RemoveWishlist']);
+
+
+    // My course all Routes
+    Route::get('my-course',[OrderController::class,'MyCourse'])->name('user.my-course');
 });
 
 require __DIR__.'/auth.php';

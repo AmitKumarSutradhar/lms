@@ -48,4 +48,6 @@ class WishListController extends Controller
             'success' => 'Successfully Course Remove'
         ]);
     }
+
+
 }
