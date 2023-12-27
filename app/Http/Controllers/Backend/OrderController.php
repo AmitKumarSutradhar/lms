@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CourseSection;
 use App\Models\Order;
 use App\Models\Payment;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Illuminate\Database\Eloquent\Casts\get;
 
 class OrderController extends Controller
 {
@@ -79,5 +81,14 @@ class OrderController extends Controller
         })->orderBy('latest_order.max_id','DESC')->get();
 
         return view('frontend.my-course.my_all_course',compact('myCourse'));
+    }
+
+    public function CourseView($course_id){
+        $id = Auth::user()->id;
+        $course = Order::where('course_id',$course_id)->where('user_id',$id)->first();
+//        return $course->course;
+        $section = CourseSection::where('course_id',$course_id)->orderBy('id','asc')->get();
+        return view('frontend.my-course.course_view',compact('course','section'));
+
     }
 }

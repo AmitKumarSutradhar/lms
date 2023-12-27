@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
     return view('frontend.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//User Group Middleware
 Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [UserController::class, 'UserProfile'])->name('user.profile');
     Route::post('/user/profile/update', [UserController::class, 'userProfileUpdate'])->name('user.profile.update');
@@ -36,7 +37,8 @@ Route::middleware('auth')->group(function () {
 
 
     // My course all Routes
-    Route::get('my-course',[OrderController::class,'MyCourse'])->name('user.my-course');
+    Route::get('/my-course',[OrderController::class,'MyCourse'])->name('user.my-course');
+    Route::get('/course-view/{course_id}',[OrderController::class,'CourseView'])->name('course.view');
 });
 
 require __DIR__.'/auth.php';
