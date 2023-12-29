@@ -31,7 +31,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-book'></i>
                 </div>
-                <div class="menu-title">Course Manage</div>
+                <div class="menu-title">My Courses</div>
             </a>
             <ul>
 
@@ -45,10 +45,10 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
                 </div>
-                <div class="menu-title">All Order</div>
+                <div class="menu-title">Orders</div>
             </a>
             <ul>
-                <li> <a href="{{ route('instructor.all.order') }}"><i class='bx bx-radio-circle'></i>Order</a>
+                <li> <a href="{{ route('instructor.all.order') }}"><i class='bx bx-radio-circle'></i>All Order</a>
                 </li>
             </ul>
         </li>

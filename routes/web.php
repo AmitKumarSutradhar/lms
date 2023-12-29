@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Fronend\CheckoutController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\QuestionController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -39,6 +40,12 @@ Route::middleware('auth')->group(function () {
     // My course all Routes
     Route::get('/my-course',[OrderController::class,'MyCourse'])->name('user.my-course');
     Route::get('/course-view/{course_id}',[OrderController::class,'CourseView'])->name('course.view');
+
+
+    // User Question all Routes
+    Route::post('/user-question',[QuestionController::class,'UserQuestion'])->name('user.question');
+
+
 });
 
 require __DIR__.'/auth.php';
