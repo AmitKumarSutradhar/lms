@@ -24,9 +24,8 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-        @if($status === '1')
-        <li class="menu-label">Course Manege</li>
 
+        @if($status === '1')
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-book'></i>
@@ -43,7 +42,7 @@
         </li>
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+                <div class="parent-icon"><i class='bx bxs-cart-add'></i>
                 </div>
                 <div class="menu-title">Orders</div>
             </a>
@@ -53,21 +52,17 @@
             </ul>
         </li>
 {{--        <li class="menu-label">Charts & Maps</li>--}}
-{{--        <li>--}}
-{{--            <a class="has-arrow" href="javascript:;">--}}
-{{--                <div class="parent-icon"><i class="bx bx-line-chart"></i>--}}
-{{--                </div>--}}
-{{--                <div class="menu-title">Charts</div>--}}
-{{--            </a>--}}
-{{--            <ul>--}}
-{{--                <li> <a href="charts-apex-chart.html"><i class='bx bx-radio-circle'></i>Apex</a>--}}
-{{--                </li>--}}
-{{--                <li> <a href="charts-chartjs.html"><i class='bx bx-radio-circle'></i>Chartjs</a>--}}
-{{--                </li>--}}
-{{--                <li> <a href="charts-highcharts.html"><i class='bx bx-radio-circle'></i>Highcharts</a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-question-mark"></i>
+                </div>
+                <div class="menu-title">Student Questions</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('instructor.all-question') }}"><i class='bx bx-radio-circle'></i>All Questions</a>
+                </li>
+            </ul>
+        </li>
 {{--        <li>--}}
 {{--            <a class="has-arrow" href="javascript:;">--}}
 {{--                <div class="parent-icon"><i class="bx bx-map-alt"></i>--}}

@@ -22,6 +22,9 @@ Route::get('/',[UserController::class,'Index'])->name('index');
 Route::get('/dashboard', function () {
     return view('frontend.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
+Route::get('/become-instructor',[AdminController::class,'BecomeInstructor'])->name('become.instructor');
+Route::post('/instructor/register',[AdminController::class,'InstructorRegister'])->name('instructor.register');
 
 //User Group Middleware
 Route::middleware('auth')->group(function () {
@@ -118,9 +121,6 @@ Route::middleware(['auth','roles:admin'])->group(function (){
     });
 });
 
-Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
-Route::get('/become-instructor',[AdminController::class,'BecomeInstructor'])->name('become.instructor');
-Route::post('/instructor/register',[AdminController::class,'InstructorRegister'])->name('instructor.register');
 
 //Instructor Group MiddleWare
 Route::middleware(['auth','roles:instructor'])->group(function (){
@@ -165,9 +165,19 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::get('/instructor/order-invoice/{payment_id}','InstructorOrderInvoice')->name('instructor.order.invoice');
     });
 
+
+    //Instructor all question routes
+    Route::controller(QuestionController::class)->group(function (){
+        Route::get('/instructor/all-question','InstructorAllQuestion')->name('instructor.all-question');
+        Route::get('/instructor/question-details/{id}','QuestionDetails')->name('question.details');
+        Route::post('/instructor/reply','InstructorReply')->name('instructor.reply');
+    });
+
+
+
 });
 
-//Route Accessable by Anyone
+//Route Accessible by Anyone
 Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login');
 Route::get('/instructor/{id}',[InstructorController::class,'InstructorDetails'])->name('instructor.details');
 
@@ -201,7 +211,7 @@ Route::get('/checkout',[CheckoutController::class,'CheckoutCreate'])->name('chec
 Route::post('/payment',[CheckoutController::class,'Payment'])->name('payment');
 
 
-//End Route Accessable by Anyone
+//End Route Accessible by Anyone
 
 
 
