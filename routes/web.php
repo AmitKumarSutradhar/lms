@@ -11,7 +11,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\CouponController;
-use App\Http\Controllers\Fronend\CheckoutController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
@@ -209,6 +209,7 @@ Route::controller(CartController::class)->group(function (){
 // Checkout All routes
 Route::get('/checkout',[CheckoutController::class,'CheckoutCreate'])->name('checkout');
 Route::post('/payment',[CheckoutController::class,'Payment'])->name('payment');
+Route::post('/stripe-order',[CheckoutController::class,'StripeOrder'])->name('stripe_order');
 
 
 //End Route Accessible by Anyone

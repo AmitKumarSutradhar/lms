@@ -72,7 +72,7 @@
                                 <div class="payment-option-wrap">
                                     <div class="payment-tab is-active">
                                         <div class="payment-tab-toggle">
-                                            <input checked="" id="bankTransfer" name="cashed_delivery" type="radio" value="handcash">
+                                            <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="handcash">
                                             <label for="bankTransfer">Direct Payment</label>
                                         </div>
                                         <div class="payment-tab-content">
@@ -81,9 +81,9 @@
                                     </div><!-- end payment-tab -->
                                     <div class="payment-tab">
                                         <div class="payment-tab-toggle">
-                                            <input type="radio" name="cashed_delivery" id="creditCart" value="creditCard">
+                                            <input type="radio" name="cash_delivery" id="creditCart" value="stripe">
                                             <label for="creditCart">Stripe Payment</label>
-                                            <img class="payment-logo" src="images/payment-img.png" alt="">
+                                            <img class="payment-logo" src="{{ asset('/') }}frontend/images/payment-img.png" alt="">
                                         </div>
                                     </div><!-- end payment-tab -->
                                 </div>
