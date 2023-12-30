@@ -101,19 +101,14 @@
             </ul>
         </li>
 
-        <li class="menu-label">Charts & Maps</li>
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-line-chart"></i>
                 </div>
-                <div class="menu-title">Charts</div>
+                <div class="menu-title">Reports</div>
             </a>
             <ul>
-                <li> <a href="charts-apex-chart.html"><i class='bx bx-radio-circle'></i>Apex</a>
-                </li>
-                <li> <a href="charts-chartjs.html"><i class='bx bx-radio-circle'></i>Chartjs</a>
-                </li>
-                <li> <a href="charts-highcharts.html"><i class='bx bx-radio-circle'></i>Highcharts</a>
+                <li> <a href="{{ route('report.view') }}"><i class='bx bx-radio-circle'></i>Report View</a>
                 </li>
             </ul>
         </li>

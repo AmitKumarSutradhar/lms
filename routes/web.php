@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\ReportController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -120,6 +121,16 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/order-details/{id}','AdminOrderDetails')->name('admin.order.details');
         Route::get('/admin/pending-confirm/{id}','PendingToConfirm')->name('pending-confirm');
     });
+
+
+    //Routes for all reports in admin panel
+    Route::controller(ReportController::class)->group(function (){
+        Route::get('/report-view','ReportView')->name('report.view');
+        Route::post('/search-by-date','SearchByDate')->name('search.by.date');
+        Route::post('/search-by-month','SearchByMonth')->name('search.by.month');
+        Route::post('/search-by-year','SearchByYear')->name('search.by.year');
+    });
+
 });
 
 
