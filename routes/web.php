@@ -15,14 +15,15 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('frontend.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
+})->middleware(['auth',  'roles:user', 'verified'])->name('dashboard');
+Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become-instructor',[AdminController::class,'BecomeInstructor'])->name('become.instructor');
 Route::post('/instructor/register',[AdminController::class,'InstructorRegister'])->name('instructor.register');
 
@@ -178,7 +179,7 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
 });
 
 //Route Accessible by Anyone
-Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login');
+Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/instructor/{id}',[InstructorController::class,'InstructorDetails'])->name('instructor.details');
 
 Route::get('/course/details/{id}/{slug}',[IndexController::class,'CourseDetails']);
