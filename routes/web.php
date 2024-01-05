@@ -185,6 +185,16 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::post('/instructor/reply','InstructorReply')->name('instructor.reply');
     });
 
+    //All coupons routes in instructor panel
+    Route::controller(CouponController::class)->group(function (){
+        Route::get('/instructor/all-coupons','InstructorAllCoupons')->name('instructor.all.coupon');
+        Route::get('/instructor/add-coupons','InstructorAddCoupons')->name('instructor.add.coupon');
+        Route::post('/instructor/store-coupon','InstructorStoreCoupons')->name('instructor.store.coupon');
+        Route::get('/instructor/edit-coupon/{id}','InstructorEditCoupons')->name('instructor.edit.coupon');
+        Route::post('/instructor/update-coupon','InstructorUpdateCoupons')->name('instructor.update.coupon');
+        Route::get('/instructor/delete-coupon/{id}','InstructorDeleteCoupons')->name('instructor.delete.coupon');
+    });
+
 
 
 });
