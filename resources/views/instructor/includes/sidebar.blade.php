@@ -72,6 +72,8 @@
             <ul>
                 <li> <a href="{{ route('instructor.all.coupon') }}"><i class='bx bx-radio-circle'></i>All Coupons</a>
                 </li>
+                <li> <a href="{{ route('instructor.add.coupon') }}"><i class='bx bx-radio-circle'></i>Add Coupon</a>
+                </li>
             </ul>
         </li>
         @else

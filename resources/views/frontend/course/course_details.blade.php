@@ -483,7 +483,15 @@
                                         <button type="submit" class="btn theme-btn w-100 theme-btn-white mb-2" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')"><i class="la la-shopping-bag mr-1"></i> Buy this course</button>
                                     </div>
                                     <p class="fs-14 text-center pb-4">30-Day Money-Back Guarantee</p>
-                                    <div class="preview-course-incentives">
+                                    <div class="input-group mb-2" id="couponField">
+                                        <input class="form-control form--control pl-3" type="text" id="coupon_name" placeholder="Coupon code">
+                                        <div class="input-group-append">
+                                            <input type="hidden" name="course_id"  id="course_id" value="{{ $course->id }}">
+                                            <input type="hidden" name="instructor_id"  id="instructor_id" value="{{ $course->instructor_id }}">
+                                            <a type="submit" class="btn theme-btn text-white"  onclick="applyInsCoupon()">Apply Code</a>
+                                        </div>
+                                    </div>
+                                    <div class="preview-course-incentives mt-3">
                                         <h3 class="card-title fs-18 pb-2">This course includes</h3>
                                         <ul class="generic-list-item pb-3">
                                             <li><i class="la la-play-circle-o mr-2 text-color"></i>{{ $course->duration }} hours on-demand video</li>

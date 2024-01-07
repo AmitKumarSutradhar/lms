@@ -457,6 +457,49 @@
 </script>
 {{--End Apply Coupon Cart --}}
 
+{{--Instructor Coupon --}}
+<script type="text/javascript">
+    function applyInsCoupon() {
+        var coupon_name = $('#coupon_name').val();
+        var course_id = $('#course_id').val();
+        var instructor_id = $('#instructor_id').val();
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {coupon_name:coupon_name, course_id:course_id, instructor_id:instructor_id},
+            url: "/inscoupon-apply",
+
+            success: function (data) {
+                couponCalculation();
+
+                if (data.validity == true){
+                    $('#couponField').hide();
+                }
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        icon: "success",
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: data.error
+                    });
+                }
+            }
+        })
+    }
+</script>
+{{--Instructor Coupon --}}
+
 {{-- Remove Coupon --}}
 <script type="text/javascript">
     function couponRemove() {

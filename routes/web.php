@@ -218,6 +218,7 @@ Route::get('/minicart/course/remove/{rowId}',[CartController::class,'RemoveMiniC
 
 //Coupon All Routes
 Route::post('/coupon-apply',[CartController::class,'CouponApply']);
+Route::post('/inscoupon-apply',[CartController::class,'InsCouponApply']);
 Route::get('/coupon-calculation',[CartController::class,'CouponCalculation']);
 Route::get('/coupon-remove',[CartController::class,'CouponRemove']);
 
