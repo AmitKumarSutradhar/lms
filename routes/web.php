@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReviewController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -131,6 +132,12 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::post('/search-by-year','SearchByYear')->name('search.by.year');
     });
 
+    //Routes for all review in admin panel
+    Route::controller(ReviewController::class)->group(function (){
+        Route::get('/admin/pending-review','AdminPendingReview')->name('admin.pending.review');
+        Route::get('/admin/active-review','AdminActiveReview')->name('admin.active.review');
+        Route::post('/admin/review-status','AdminReviewStatus')->name('update.review.status');
+    });
 });
 
 
@@ -234,6 +241,9 @@ Route::get('/checkout',[CheckoutController::class,'CheckoutCreate'])->name('chec
 Route::post('/payment',[CheckoutController::class,'Payment'])->name('payment');
 Route::post('/stripe-order',[CheckoutController::class,'StripeOrder'])->name('stripe_order');
 
+
+//Review Routes
+Route::post('/store-review',[ReviewController::class,'StoreReview'])->name('store.review');
 
 //End Route Accessible by Anyone
 
