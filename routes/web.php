@@ -202,7 +202,10 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::get('/instructor/delete-coupon/{id}','InstructorDeleteCoupons')->name('instructor.delete.coupon');
     });
 
-
+    //Routes for all review in instructor panel
+    Route::controller(ReviewController::class)->group(function (){
+        Route::get('/instructor/all-review','InstructorAllReview')->name('instructor.all.review');
+    });
 
 });
 
