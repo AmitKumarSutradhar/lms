@@ -112,6 +112,7 @@
                 </li>
             </ul>
         </li>
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-revision"></i>
@@ -122,6 +123,20 @@
                 <li> <a href="{{ route('admin.pending.review') }}"><i class='bx bx-radio-circle'></i>Pending Review</a>
                 </li>
                 <li> <a href="{{ route('admin.active.review') }}"><i class='bx bx-radio-circle'></i>Active Review</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-revision"></i>
+                </div>
+                <div class="menu-title">Users</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.all.user') }}"><i class='bx bx-radio-circle'></i>All User</a>
+                </li>
+                <li> <a href="{{ route('admin.all.instructor') }}"><i class='bx bx-radio-circle'></i>Instructors</a>
                 </li>
             </ul>
         </li>

@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\ActiveUserController;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -137,6 +138,12 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/pending-review','AdminPendingReview')->name('admin.pending.review');
         Route::get('/admin/active-review','AdminActiveReview')->name('admin.active.review');
         Route::post('/admin/review-status','AdminReviewStatus')->name('update.review.status');
+    });
+
+    //Routes for all user in admin panel
+    Route::controller(ActiveUserController::class)->group(function (){
+        Route::get('/admin/all-active-user','AdminAllActiveUser')->name('admin.all.user');
+        Route::get('/admin/all-active-instructor','AdminAllActiveInstructor')->name('admin.all.instructor');
     });
 });
 
