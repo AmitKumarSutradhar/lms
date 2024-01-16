@@ -30,7 +30,7 @@
     <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
     <!--End Back To Top Button-->
     <footer class="page-footer">
-        <p class="mb-0">Copyright © 2022. All right reserved.</p>
+        <p class="mb-0">Copyright © {{ now()->year }}. All right reserved.</p>
     </footer>
 </div>
 <!--end wrapper-->
@@ -194,8 +194,14 @@
 <script src="{{ asset('/') }}backend/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
 <script src="{{ asset('/') }}backend/assets/plugins/chartjs/js/chart.js"></script>
 <script src="{{ asset('/') }}backend/assets/js/index.js"></script>
+
+{{--Tags Input --}}
+<script src="{{ asset('/') }}backend/assets/plugins/input-tags/js/tagsinput.js"></script>
+{{--Tags Input --}}
+
 <!--app JS-->
 <script src="{{ asset('/') }}backend/assets/js/app.js"></script>
+
 
 <script src="{{ asset('/') }}backend/assets/js/validate.min.js"></script>
 
@@ -216,6 +222,15 @@
     } );
 </script>
 <!--End Data Table JS-->
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+        plugins: 'powerpaste advcode table lists checklist',
+        toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
+    });
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -241,6 +256,7 @@
     }
     @endif
 </script>
+
 </body>
 
 </html>

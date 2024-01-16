@@ -37,7 +37,7 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="lni lni-users"></i>
+                <div class="parent-icon"><i class="bx bxs-graduation"></i>
                 </div>
                 <div class="menu-title">Instructors</div>
             </a>
@@ -129,7 +129,7 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-revision"></i>
+                <div class="parent-icon"><i class="bx bx-user-circle"></i>
                 </div>
                 <div class="menu-title">Users</div>
             </a>
@@ -137,6 +137,20 @@
                 <li> <a href="{{ route('admin.all.user') }}"><i class='bx bx-radio-circle'></i>All User</a>
                 </li>
                 <li> <a href="{{ route('admin.all.instructor') }}"><i class='bx bx-radio-circle'></i>Instructors</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-link"></i>
+                </div>
+                <div class="menu-title">Blog</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Category</a>
+                </li>
+                <li> <a href="{{ route('admin.blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a>
                 </li>
             </ul>
         </li>

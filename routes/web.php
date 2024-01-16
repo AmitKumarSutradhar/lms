@@ -19,6 +19,8 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\Backend\BlogController;
+use App\Models\BlogPost;
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -145,7 +147,29 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/all-active-user','AdminAllActiveUser')->name('admin.all.user');
         Route::get('/admin/all-active-instructor','AdminAllActiveInstructor')->name('admin.all.instructor');
     });
-});
+
+
+    //Routes for all blog category in admin panel
+    Route::controller(BlogController::class)->group(function (){
+        Route::get('/admin/blog-category','AdminAllBlogCategory')->name('admin.blog.category');
+        Route::get('/edit/blog-category/{id}','EditBlogCategory');
+        Route::post('/admin/blog-category/store','BlogCategoryStore')->name('blog.category.store');
+        Route::post('/admin/blog-category/update','BlogCategoryUpdate')->name('blog.category.update');
+        Route::get('/admin/blog-category/delete/{id}','BlogCategoryDelete')->name('blog.category.delete');
+    });
+
+    //Routes for all blog post in admin panel
+    Route::controller(BlogController::class)->group(function (){
+        Route::get('/admin/blog-post','AdminAllBlogPost')->name('admin.blog.post');
+        Route::get('/admin/blog-post/create','AdminAddBlogPost')->name('admin.blog.post.add');
+        Route::post('/admin/blog-post/store','AdminStoreBlogPost')->name('admin.blog.post.store');
+        Route::get('/admin/blog-post/edit/{id}','EditBlogPost')->name('blog.post.edit');
+        Route::post('/admin/blog-post/update','UpdateBlogPost')->name('blog.post.update');
+        Route::post('/admin/blog-post/update','UpdateBlogPost')->name('blog.post.update');
+        Route::get('/admin/blog-post/delete/{id}','DeleteBlogPost')->name('blog.post.delete');
+    });
+
+}); //End Admin Group Middleware
 
 
 //Instructor Group MiddleWare
