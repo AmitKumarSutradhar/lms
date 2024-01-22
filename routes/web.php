@@ -279,6 +279,13 @@ Route::post('/stripe-order',[CheckoutController::class,'StripeOrder'])->name('st
 //Review Routes
 Route::post('/store-review',[ReviewController::class,'StoreReview'])->name('store.review');
 
+//Blog Details
+Route::get('/blog-details/{slug}',[BlogController::class,'BlogDetails']);
+
+//Blog Category
+Route::get('/blog-category/{id}',[BlogController::class,'BlogCategory']);
+Route::get('/blogs',[BlogController::class,'AllBlog'])->name('blog.all');
+
 //End Route Accessible by Anyone
 
 

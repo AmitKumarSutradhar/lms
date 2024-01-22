@@ -47,7 +47,7 @@
 
                     <div class="col-md-12 form-group">
                         <label for="input1" class="form-label">Description</label>
-                        <textarea name="long_description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;">value="{!! $post->long_description !!}"</textarea>
+                        <textarea name="long_description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;">{!! $post->long_description !!}</textarea>
                     </div>
 
                     <div class="col-md-12 form-group">
