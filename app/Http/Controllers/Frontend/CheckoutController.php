@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Mail\Orderconfirm;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\User;
+use App\Notifications\OrderComplete;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -45,6 +48,7 @@ class CheckoutController extends Controller
     }
 
     public function Payment(Request $request){
+        $user = User::where('role','instructor')->get();
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         } else {
@@ -122,6 +126,9 @@ class CheckoutController extends Controller
 
             //Mail::to($request->email)->send(new Orderconfirm($data));
             //End Send Email to Student
+
+            //Send notification
+            Notification::send($user, new OrderComplete($request->name));
 
             $notification = array(
                 'message'           => 'Cash payment submitted successfully',

@@ -286,6 +286,9 @@ Route::get('/blog-details/{slug}',[BlogController::class,'BlogDetails']);
 Route::get('/blog-category/{id}',[BlogController::class,'BlogCategory']);
 Route::get('/blogs',[BlogController::class,'AllBlog'])->name('blog.all');
 
+
+Route::post('/mark-notification-as-read/{notification}',[CartController::class,'MarkAsRead']);
+
 //End Route Accessible by Anyone
 
 

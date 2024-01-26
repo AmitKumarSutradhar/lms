@@ -8,6 +8,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -246,4 +247,15 @@ class CartController extends Controller
         return response()->json(['success' => 'Successfully Added on Your Cart']);
 
     }// End Method
+
+    public function MarkAsRead(Request $request, $notificationId){
+        $user = Auth::user();
+        $notification = $user->notification()->where('id',$notificationId)->first();
+
+        if ($notification){
+            $notification->markAsRead();
+        }
+
+        return response()->json(['count' => $user->unreadNotifications()->count()]);
+    }
 }
