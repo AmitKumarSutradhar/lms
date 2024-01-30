@@ -1,4 +1,9 @@
 @extends('frontend.master')
+
+@section('title')
+    {{ $blog->post_title }}
+@endsection
+
 @section('body')
     <!-- ================================
     START BREADCRUMB AREA

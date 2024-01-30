@@ -112,10 +112,13 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/delete-coupon/{id}','AdminDeleteCoupon')->name('admin.delete.coupon');
     });
 
-    //Routes for all courses in admin panel
+    //Routes for all settings in admin panel
     Route::controller(SettingController::class)->group(function (){
         Route::get('/smtp-settings','SmtpSettings')->name('smtp.settings');
         Route::post('/smtp-update','SmtpUpdate')->name('smtp.update');
+
+        Route::get('/site-settings','SiteSettings')->name('site.settings');
+        Route::post('/site-update','SiteUpdate')->name('site.update');
     });
 
     //Routes for all orders in admin panel

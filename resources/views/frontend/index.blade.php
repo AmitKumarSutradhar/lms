@@ -1,5 +1,7 @@
 @extends('frontend.master')
 
+@section('title','Easy Learn School ')
+
 @section('body')
     <!--================================
          START HERO AREA

@@ -1,16 +1,19 @@
+@php
+    $setting = \App\Models\SiteSetting::find(1);
+@endphp
 <section class="footer-area pt-100px">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
                     <a href="index.html">
-{{--                        <img src="{{ asset('/') }}frontend/images/logo.png" alt="footer logo" class="footer__logo">--}}
-                        <h3><b class="text-bg-dark">Edu Squar</b></h3>
+                        <img src="{{ asset($setting->logo) }}" alt="footer logo" class="footer__logo">
+{{--                        <h3><b class="text-bg-dark">Edu Squar</b></h3>--}}
                     </a>
                     <ul class="generic-list-item pt-4">
-                        <li><a href="tel:+1631237884">+163 123 7884</a></li>
-                        <li><a href="mailto:support@wbsite.com">support@website.com</a></li>
-                        <li>Melbourne, Australia, 105 South Park Avenue</li>
+                        <li><a href="tel:{{ $setting->phone }}"> (+88) {{ $setting->phone }}</a></li>
+                        <li><a href="mailto:{{ $setting->email }}"> {{ $setting->email }}</a></li>
+                        <li> {{ $setting->address }}</li>
                     </ul>
                     <h3 class="fs-20 font-weight-semi-bold pt-4 pb-2">We are on</h3>
                     <ul class="social-icons social-icons-styled">

@@ -75,18 +75,6 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="lni lni-select"></i>
-                </div>
-                <div class="menu-title">Settings</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>SMTP Settings</a>
-                </li>
-            </ul>
-        </li>
-
-        <li>
-            <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-cart-full"></i>
                 </div>
                 <div class="menu-title">Orders</div>
@@ -151,6 +139,20 @@
                 <li> <a href="{{ route('admin.blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Category</a>
                 </li>
                 <li> <a href="{{ route('admin.blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bxl-dev-to"></i>
+                </div>
+                <div class="menu-title">Settings</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('site.settings') }}"><i class='bx bx-radio-circle'></i>Site Settings</a>
+                </li>
+                <li> <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>SMTP Settings</a>
                 </li>
             </ul>
         </li>
