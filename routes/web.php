@@ -20,7 +20,8 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
-use App\Models\BlogPost;
+use App\Http\Controllers\Backend\RoleController;
+
 
 
 Route::get('/',[UserController::class,'Index'])->name('index');
@@ -170,6 +171,16 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::post('/admin/blog-post/update','UpdateBlogPost')->name('blog.post.update');
         Route::post('/admin/blog-post/update','UpdateBlogPost')->name('blog.post.update');
         Route::get('/admin/blog-post/delete/{id}','DeleteBlogPost')->name('blog.post.delete');
+    });
+
+    //Routes for all role & permission in admin panel
+    Route::controller(RoleController::class)->group(function (){
+        Route::get('/admin/all-permission','AllPermission')->name('all.permission');
+        Route::get('/admin/add-permission','AddPermission')->name('add.permission');
+        Route::post('/admin/store-permission','StorePermission')->name('store.permission');
+        Route::get('/admin/edit-permission/{id}','EditPermission')->name('edit.permission');
+        Route::post('/admin/update-permission','UpdatePermission')->name('update.permission');
+        Route::get('/admin/delete-permission/{id}','DeletePermission')->name('delete.permission');
     });
 
 }); //End Admin Group Middleware

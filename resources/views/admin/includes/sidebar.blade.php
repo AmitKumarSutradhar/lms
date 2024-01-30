@@ -158,12 +158,24 @@
         </li>
 
         <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bxs-lock"></i>
                 </div>
-                <div class="menu-title">Support</div>
+                <div class="menu-title">Role & Permission</div>
             </a>
+            <ul>
+                <li> <a href="{{ route('all.permission') }}"><i class='bx bx-radio-circle'></i>All Permission</a></li>
+                <li> <a href="{{ route('add.permission') }}"><i class='bx bx-radio-circle'></i>Add Permission</a></li>
+            </ul>
         </li>
+
+{{--        <li>--}}
+{{--            <a href="https://themeforest.net/user/codervent" target="_blank">--}}
+{{--                <div class="parent-icon"><i class="bx bx-support"></i>--}}
+{{--                </div>--}}
+{{--                <div class="menu-title">Support</div>--}}
+{{--            </a>--}}
+{{--        </li>--}}
     </ul>
     <!--end navigation-->
 </div>
