@@ -9,10 +9,12 @@
         "anayarojo/shoppingcart": "^4.2",
         "barryvdh/laravel-dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "harishdurga/laravel-quiz": "^1.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "maatwebsite/excel": "^3.1",
         "spatie/laravel-permission": "^6.3",
         "stripe/stripe-php": "^13.7"
     },

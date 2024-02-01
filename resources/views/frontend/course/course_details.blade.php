@@ -1,5 +1,10 @@
 @extends('frontend.master')
 
+
+@section('title')
+    {{ $course->course_name }} || Easy Learn School
+@endsection
+
 @section('body')
     <!-- ================================
     START BREADCRUMB AREA
@@ -9,7 +14,7 @@
             <div class="col-lg-8 mr-auto">
                 <div class="breadcrumb-content">
                     <ul class="generic-list-item generic-list-item-arrow d-flex flex-wrap align-items-center">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('index') }}">Home</a></li>
                         <li><a href="#">{{ $course['category']['category_name'] }}</a></li>
                         <li><a href="#">{{ $course['subcategory']['subcategory_name'] }}</a></li>
                     </ul>

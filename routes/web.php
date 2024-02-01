@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstructorController;
@@ -21,6 +20,7 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\QuizController;
 
 
 
@@ -181,6 +181,10 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/edit-permission/{id}','EditPermission')->name('edit.permission');
         Route::post('/admin/update-permission','UpdatePermission')->name('update.permission');
         Route::get('/admin/delete-permission/{id}','DeletePermission')->name('delete.permission');
+
+        Route::get('/admin/import-permission','ImportPermission')->name('import.permission');
+        Route::post('/admin/import-permission-file','ImportPermissionFile')->name('import.permission.file');
+        Route::get('/admin/export-permission','ExportPermission')->name('export.permission');
     });
 
 }); //End Admin Group Middleware
@@ -219,6 +223,17 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::get('/edit-lecture/{id}','EditLecture')->name('edit.lecture');
         Route::post('/update-lecture','UpdateLecture')->name('update.course.lecture');
         Route::get('/delete-lecture/{id}','DeleteLecture')->name('delete.lecture');
+    });
+
+
+    //Course Quiz according to section all routes
+    Route::controller(QuizController::class)->group( function(){
+        Route::post('/save-quiz','SaveQuiz')->name('save.quiz');
+        Route::get('/quiz/{id}','ViewQuiz')->name('view.quiz');
+        Route::post('/question','AddQuestion')->name('add.quiz.question');
+//        Route::get('/edit-lecture/{id}','EditLecture')->name('edit.lecture');
+//        Route::post('/update-lecture','UpdateLecture')->name('update.course.lecture');
+//        Route::get('/delete-lecture/{id}','DeleteLecture')->name('delete.lecture');
     });
 
 

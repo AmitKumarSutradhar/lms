@@ -650,73 +650,77 @@
                                             <div class="question-list-item">
                                                 @php
                                                     $id = Auth::user()->id;
-                                                    $question = \App\Models\Question::where('user_id',$id)->where('course_id',$course->course->id)->where('parent_id',null)->orderBy('id','asc')->get();
+                                                    $question = \App\Models\UserQuestion::where('user_id',$id)->where('course_id',$course->course->id)->where('parent_id',null)->orderBy('id','asc')->get();
                                                 @endphp
-                                                @foreach($question as $que)
-                                                    <div class="media media-card border-bottom border-bottom-gray py-4 px-3">
-                                                        <div class="media-img rounded-full flex-shrink-0 avatar-sm">
-                                                            <img class="rounded-full" src="{{ (!empty($que->user->photo)) ? url('upload/user_images/'.$que->user->photo) : url('upload/no_images.jpg') }}" alt="User image">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <div class="question-meta-content">
-                                                                    <a href="javascript:void(0)" class="d-block">
-                                                                        <h5 class="fs-16 pb-1">{{ $que->subject }}</h5>
-                                                                        <p class="text-truncate fs-15 text-gray">{{ $que->question }}</p>
-                                                                    </a>
-                                                                </div><!-- end question-meta-content -->
-                                                                <div class="question-upvote-action">
-                                                                    <div class="number-upvotes pb-2 d-flex align-items-center">
-                                                                        <span>1</span>
-                                                                        <button type="button"><i class="la la-arrow-up"></i></button>
-                                                                    </div>
-                                                                    <div class="number-upvotes question-response d-flex align-items-center">
-                                                                        <span>1</span>
-                                                                        <button type="button" class="question-replay-btn"><i class="la la-comments"></i></button>
-                                                                    </div>
-                                                                </div><!-- end question-upvote-action -->
+                                                @if($question->count() > 0)
+                                                    @foreach($question as $que)
+                                                        <div class="media media-card border-bottom border-bottom-gray py-4 px-3">
+                                                            <div class="media-img rounded-full flex-shrink-0 avatar-sm">
+                                                                <img class="rounded-full" src="{{ (!empty($que->user->photo)) ? url('upload/user_images/'.$que->user->photo) : url('upload/no_images.jpg') }}" alt="User image">
                                                             </div>
-                                                            <p class="meta-tags pt-1 fs-13">
-                                                                <span>{{ \Carbon\Carbon::parse($que->created_at)->diffForHumans() }}</span>
-                                                            </p>
-                                                        </div><!-- end media-body -->
-                                                    </div><!-- end media -->
+                                                            <div class="media-body">
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div class="question-meta-content">
+                                                                        <a href="javascript:void(0)" class="d-block">
+                                                                            <h5 class="fs-16 pb-1">{{ $que->subject }}</h5>
+                                                                            <p class="text-truncate fs-15 text-gray">{{ $que->question }}</p>
+                                                                        </a>
+                                                                    </div><!-- end question-meta-content -->
+                                                                    <div class="question-upvote-action">
+                                                                        <div class="number-upvotes pb-2 d-flex align-items-center">
+                                                                            <span>1</span>
+                                                                            <button type="button"><i class="la la-arrow-up"></i></button>
+                                                                        </div>
+                                                                        <div class="number-upvotes question-response d-flex align-items-center">
+                                                                            <span>1</span>
+                                                                            <button type="button" class="question-replay-btn"><i class="la la-comments"></i></button>
+                                                                        </div>
+                                                                    </div><!-- end question-upvote-action -->
+                                                                </div>
+                                                                <p class="meta-tags pt-1 fs-13">
+                                                                    <span>{{ \Carbon\Carbon::parse($que->created_at)->diffForHumans() }}</span>
+                                                                </p>
+                                                            </div><!-- end media-body -->
+                                                        </div><!-- end media -->
 
-                                                    @php
-                                                        $reply = \App\Models\Question::where('parent_id',$que->id)->get();
-                                                    @endphp
-                                                    {{--  Reply --}}
-                                                    @foreach($reply as $rep)
-                                                        <div class="media media-card border-bottom border-bottom-gray py-4 px-3 bg-gray">
-                                                        <div class="media-img rounded-full flex-shrink-0 avatar-sm">
-                                                            <img class="rounded-full" src="{{ (!empty($rep->instructor->photo)) ? url('upload/instructor_images/'.$rep->instructor->photo) : url('upload/no_images.jpg') }}" alt="User image">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <div class="question-meta-content">
-                                                                    <a href="javascript:void(0)" class="d-block">
-                                                                        <h5 class="fs-16 pb-1">{{ $rep->instructor->name }}</h5>
-                                                                        <p class="text-truncate fs-15 text-gray">{{ $rep->question }}</p>
-                                                                    </a>
-                                                                </div><!-- end question-meta-content -->
-                                                                <div class="question-upvote-action">
-                                                                    <div class="number-upvotes pb-2 d-flex align-items-center">
-                                                                        <span>1</span>
-                                                                        <button type="button"><i class="la la-arrow-up"></i></button>
-                                                                    </div>
-                                                                    <div class="number-upvotes question-response d-flex align-items-center">
-                                                                        <span>1</span>
-                                                                        <button type="button" class="question-replay-btn"><i class="la la-comments"></i></button>
-                                                                    </div>
-                                                                </div><!-- end question-upvote-action -->
+                                                        @php
+                                                            $reply = \App\Models\Question::where('parent_id',$que->id)->get();
+                                                        @endphp
+                                                        {{--  Reply --}}
+                                                        @foreach($reply as $rep)
+                                                            <div class="media media-card border-bottom border-bottom-gray py-4 px-3 bg-gray">
+                                                            <div class="media-img rounded-full flex-shrink-0 avatar-sm">
+                                                                <img class="rounded-full" src="{{ (!empty($rep->instructor->photo)) ? url('upload/instructor_images/'.$rep->instructor->photo) : url('upload/no_images.jpg') }}" alt="User image">
                                                             </div>
-                                                            <p class="meta-tags pt-1 fs-13">
-                                                                <span>{{ \Carbon\Carbon::parse($rep->created_at)->diffForHumans() }}</span>
-                                                            </p>
-                                                        </div><!-- end media-body -->
-                                                    </div><!-- end media -->
+                                                            <div class="media-body">
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div class="question-meta-content">
+                                                                        <a href="javascript:void(0)" class="d-block">
+                                                                            <h5 class="fs-16 pb-1">{{ $rep->instructor->name }}</h5>
+                                                                            <p class="text-truncate fs-15 text-gray">{{ $rep->question }}</p>
+                                                                        </a>
+                                                                    </div><!-- end question-meta-content -->
+                                                                    <div class="question-upvote-action">
+                                                                        <div class="number-upvotes pb-2 d-flex align-items-center">
+                                                                            <span>1</span>
+                                                                            <button type="button"><i class="la la-arrow-up"></i></button>
+                                                                        </div>
+                                                                        <div class="number-upvotes question-response d-flex align-items-center">
+                                                                            <span>1</span>
+                                                                            <button type="button" class="question-replay-btn"><i class="la la-comments"></i></button>
+                                                                        </div>
+                                                                    </div><!-- end question-upvote-action -->
+                                                                </div>
+                                                                <p class="meta-tags pt-1 fs-13">
+                                                                    <span>{{ \Carbon\Carbon::parse($rep->created_at)->diffForHumans() }}</span>
+                                                                </p>
+                                                            </div><!-- end media-body -->
+                                                        </div><!-- end media -->
+                                                        @endforeach
                                                     @endforeach
-                                                @endforeach
+                                                @else
+                                                    <p class="text-warning">No question available for this course.</p>
+                                                @endif
                                             </div>
                                             <div class="question-btn-box pt-35px text-center">
                                                 <button class="btn theme-btn theme-btn-transparent w-100" type="button">See More</button>

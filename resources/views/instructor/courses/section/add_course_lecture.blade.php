@@ -28,11 +28,19 @@
                                     <div class="card-body p-4 d-flex justify-content-between">
                                         <h6>{{ $item->section_title }}</h6>
                                         <div class="d-flex justify-content-between align-item-center">
+                                            <a class="btn btn-primary" onclick="addLectureDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addLectureBtn($key)">Add Lecture</a>
+                                            @php
+                                                $availableQuiz = \Harishdurga\LaravelQuiz\Models\Quiz::where('course_id',$course->id)->where('section_id',$item->id)->first();
+                                            @endphp
+                                            @if($availableQuiz->count() > 0)
+                                                <span class="mx-1"><a class="btn btn-warning" href="{{ route('view.quiz',$availableQuiz->id) }}" id="addQuizBtn($key)">View Quiz</a></span>
+                                            @else
+                                                <span class="mx-1"><a class="btn btn-warning" onclick="addQuizDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addQuizBtn($key)">Add Quiz</a></span>
+                                            @endif
                                             <form action="{{ route('delete.section',['id' => $item->id]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger px-2 mx-1 ms-auto">Delete Section</button>
                                             </form>
-                                            <a class="btn btn-primary" onclick="addLectureDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addLectureBtn($key)">Add Lecture</a>
                                         </div>
                                     </div>
 
@@ -141,7 +149,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
 
                 lectureContainer.style.display = 'none';
                 location.reload();
@@ -179,5 +187,119 @@
         }
     </script>
 
+
+
+{{--    Quiz Adding Functionality--}}
+
+    <script>
+        function addQuizDiv(courseId, sectionId, containerId) {
+            const quizContainer = document.getElementById(containerId);
+            const newQuizDiv = document.createElement('div');
+            newQuizDiv.classList.add('quizDiv','mb-3');
+
+            // newQuizDiv.innerHTML = `
+            //     <div class="container">
+            //         <h6>Quiz Title</h6>
+            //         <input type="text" name="name" id="" class="form-control my-1" placeholder="Enter Quiz">
+            //         <input type="text" name="total_marks" id="" class="form-control my-1" placeholder="Total Marks">
+            //         <input type="text" name="pass_marks" id="" class="form-control my-1" placeholder="Pass Marks">
+            //
+            //
+            //         <button class="btn btn-primary mt-3" onclick="saveQuiz('${courseId}', '${sectionId}', '${containerId}')">Save Quiz</button>
+            //         <button class="btn btn-primary mt-3" onclick="hideQuizContainer('${containerId}')">Cancel</button>
+            //     </div>
+            // `;
+
+
+            newQuizDiv.innerHTML = `
+                <form action="{{ route('save.quiz') }}" method="post" class="container">
+                @csrf
+                    <h6>Quiz Title</h6>
+                    <input type="hidden" name="course_id" value="${courseId}">
+                    <input type="hidden" name="section_id" id="" value="${sectionId}">
+
+
+                    <input type="text" name="name" id="" class="form-control my-1" placeholder="Enter Quiz">
+                    <input type="text" name="total_marks" id="" class="form-control my-1" placeholder="Total Marks">
+                    <input type="text" name="pass_marks" id="" class="form-control my-1" placeholder="Pass Marks">
+
+
+<!--                    <button class="btn btn-primary mt-3" onclick="saveQuiz('${courseId}', '${sectionId}', '${containerId}')">Save Quiz</button>-->
+                    <button type="submit" class="btn btn-primary mt-3">Save Quiz</button>
+                    <button class="btn btn-primary mt-3" onclick="hideQuizContainer('${containerId}')">Cancel</button>
+                </form>
+            `;
+
+            quizContainer.appendChild(newQuizDiv);
+        }
+
+        function hideQuizContainer(containerId) {
+            const quizContainer = document.getElementById(containerId);
+            quizContainer.style.display = 'none';
+            location.reload();
+        }
+    </script>
+
+{{--    <script>--}}
+{{--        function saveQuiz(courseId, sectionId, containerId) {--}}
+{{--            const quizContainer = document.getElementById(containerId);--}}
+{{--            const quizTitle = quizContainer.querySelector('input[name="name"]').value;--}}
+{{--            const totalMarks = quizContainer.querySelector('input[name="total_marks"]').value;--}}
+{{--            const passMarks = quizContainer.querySelector('input[name="pass_marks"]').value;--}}
+
+{{--            fetch('/save-quiz',{--}}
+{{--                method: 'POST',--}}
+{{--                headers: {--}}
+{{--                    'Content-Type' : 'application/json',--}}
+{{--                    'X-CSRF-TOKEN' : '{{ csrf_token() }}',--}}
+{{--                },--}}
+{{--                body: JSON.stringify({--}}
+{{--                    course_id: courseId,--}}
+{{--                    section_id: sectionId,--}}
+{{--                    quiz_title: quizTitle,--}}
+{{--                    total_marks: totalMarks,--}}
+{{--                    pass_mark: passMarks--}}
+{{--                })--}}
+{{--            })--}}
+
+{{--            .then(response => response.json())--}}
+{{--            .then(data => {--}}
+{{--                console.log(data)--}}
+
+{{--                quizContainer.style.display = 'none';--}}
+{{--                location.reload();--}}
+
+{{--                // Start Message--}}
+
+{{--                const Toast = Swal.mixin({--}}
+{{--                    toast: true,--}}
+{{--                    position: 'top-end',--}}
+{{--                    icon: 'success',--}}
+{{--                    showConfirmButton: false,--}}
+{{--                    timer: 6000--}}
+{{--                })--}}
+{{--                if ($.isEmptyObject(data.error)) {--}}
+
+{{--                    Toast.fire({--}}
+{{--                        type: 'success',--}}
+{{--                        title: data.success,--}}
+{{--                    })--}}
+
+{{--                }else{--}}
+
+{{--                    Toast.fire({--}}
+{{--                        type: 'error',--}}
+{{--                        title: data.error,--}}
+{{--                    })--}}
+{{--                }--}}
+
+{{--                // End Message--}}
+
+{{--            })--}}
+{{--            .catch(error => {--}}
+{{--                console.error(error)--}}
+{{--            })--}}
+{{--        }--}}
+{{--    </script>--}}
 
 @endsection

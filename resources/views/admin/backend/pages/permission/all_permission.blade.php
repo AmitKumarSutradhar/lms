@@ -15,7 +15,9 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.permission') }}" class="btn btn-primary px-5">Add Permission</a>
+                    <a href="{{ route('import.permission') }}" class="btn btn-inverse-warning">Import</a>
+                    <a href="{{ route('export.permission') }}" class="btn btn-inverse-primary mx-3">Export</a>
+                    <a href="{{ route('add.permission') }}" class="btn btn-primary">Add Permission</a>
                 </div>
             </div>
         </div>

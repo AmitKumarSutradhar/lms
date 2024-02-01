@@ -38,7 +38,6 @@
                         <label for="input1" class="form-label">Permission Name</label>
                         <select name="group_name" class="form-select" id="input39">
                             <option selected="" disabled>-- Select Category --</option>
-{{--                            @foreach($category as $item)--}}
                                 <option value="Category">Category</option>
                                 <option value="Instructor">Instructor</option>
                                 <option value="Coupon">Coupon</option>
@@ -48,7 +47,6 @@
                                 <option value="Review">Review</option>
                                 <option value="All User">All User</option>
                                 <option value="Blog">Blog</option>
-{{--                            @endforeach--}}
                         </select>
                     </div>
 
