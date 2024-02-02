@@ -164,10 +164,24 @@
                 <div class="menu-title">Role & Permission</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.permission') }}"><i class='bx bx-radio-circle'></i>All Permission</a></li>
-                <li> <a href="{{ route('add.permission') }}"><i class='bx bx-radio-circle'></i>Add Permission</a></li>
+                <li><a class="has-arrow" href="javascript:;"><i class='bx bx-radio-circle'></i>Roles</a>
+                    <ul>
+                        <li> <a href="{{ route('all.role') }}"><i class='bx bx-radio-circle'></i>Manage Role</a></li>
+                        <li> <a href="{{ route('add.role') }}"><i class='bx bx-radio-circle'></i>Add Role</a></li>
+                        <li> <a href="{{ route('role.assigned.permission') }}"><i class='bx bx-radio-circle'></i>Assigned Permission</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow" href="javascript:;"><i class='bx bx-radio-circle'></i>Permission</a>
+                    <ul>
+                        <li> <a href="{{ route('all.permission') }}"><i class='bx bx-radio-circle'></i>Manage Permission</a></li>
+                        <li> <a href="{{ route('add.permission') }}"><i class='bx bx-radio-circle'></i>Add Permission</a></li>
+                        <li> <a href="{{ route('assign.permission') }}"><i class='bx bx-radio-circle'></i>Assign Permission</a></li>
+                    </ul>
+                </li>
             </ul>
         </li>
+
+
 
 {{--        <li>--}}
 {{--            <a href="https://themeforest.net/user/codervent" target="_blank">--}}

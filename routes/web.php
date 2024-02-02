@@ -20,7 +20,9 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\QuizController;
+
 
 
 
@@ -173,8 +175,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/blog-post/delete/{id}','DeleteBlogPost')->name('blog.post.delete');
     });
 
-    //Routes for all role & permission in admin panel
-    Route::controller(RoleController::class)->group(function (){
+    //Routes for all permission in admin panel
+    Route::controller(PermissionController::class)->group(function (){
         Route::get('/admin/all-permission','AllPermission')->name('all.permission');
         Route::get('/admin/add-permission','AddPermission')->name('add.permission');
         Route::post('/admin/store-permission','StorePermission')->name('store.permission');
@@ -185,6 +187,24 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/import-permission','ImportPermission')->name('import.permission');
         Route::post('/admin/import-permission-file','ImportPermissionFile')->name('import.permission.file');
         Route::get('/admin/export-permission','ExportPermission')->name('export.permission');
+
+        Route::get('/admin/assign-permission','AssignPermission')->name('assign.permission');
+        Route::post('/admin/store-assign-permission','StoreAssignPermission')->name('assign.permission.store');
+        Route::get('/admin/assigned-permission/edit/{id}','EditPermissionAssignedRole')->name('edit.assigned.permission');
+        Route::post('/admin/assigned-permission/update/{id}','UpdatePermissionAssigned')->name('assigned.permission.update');
+        Route::get('/admin/assigned-permission/delete/{id}','DeletePermissionAssignedRole')->name('delete.assigned.permission');
+    });
+
+    //Routes for all role in admin panel
+    Route::controller(RoleController::class)->group(function (){
+        Route::get('/admin/roles','AllRoles')->name('all.role');
+        Route::get('/admin/add-role','AddRoles')->name('add.role');
+        Route::post('/admin/store-role','StoreRoles')->name('store.role');
+        Route::get('/admin/edit/{id}','EditRole')->name('edit.role');
+        Route::post('/admin/update','UpdateRole')->name('update.role');
+        Route::get('/admin/role/delete/{id}','DeleteRole')->name('delete.role');
+
+        Route::get('/admin/role-by-permission','RoleByPermission')->name('role.assigned.permission');
     });
 
 }); //End Admin Group Middleware
