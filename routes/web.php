@@ -120,8 +120,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/smtp-settings','SmtpSettings')->name('smtp.settings');
         Route::post('/smtp-update','SmtpUpdate')->name('smtp.update');
 
-        Route::get('/site-settings','SiteSettings')->name('site.settings');
-        Route::post('/site-update','SiteUpdate')->name('site.update');
+        Route::get('/site-settings','SiteSettings')->name('site.settings')->middleware('permission:site.setting');
+        Route::post('/site-update','SiteUpdate')->name('site.update')->middleware('permission:site.setting');
     });
 
     //Routes for all orders in admin panel

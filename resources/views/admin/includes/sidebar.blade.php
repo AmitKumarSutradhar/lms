@@ -143,19 +143,21 @@
             </ul>
         </li>
 
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bxl-dev-to"></i>
-                </div>
-                <div class="menu-title">Settings</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('site.settings') }}"><i class='bx bx-radio-circle'></i>Site Settings</a>
-                </li>
-                <li> <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>SMTP Settings</a>
-                </li>
-            </ul>
-        </li>
+        @if(Auth::user()->can('site.setting'))
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bx bxl-dev-to"></i>
+                    </div>
+                    <div class="menu-title">Settings</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('site.settings') }}"><i class='bx bx-radio-circle'></i>Site Settings</a>
+                    </li>
+                    <li> <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>SMTP Settings</a>
+                    </li>
+                </ul>
+            </li>
+        @endif
 
         <li>
             <a class="has-arrow" href="javascript:;">
