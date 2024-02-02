@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -184,6 +186,91 @@ class AdminController extends Controller
     public function AdminCourseDetails($id){
         $course = Course::find($id);
         return view('admin.backend.courses.course_details',compact('course'));
+
+    }
+
+    public function AllAdmin(){
+        $allAdmin = User::where('role','admin')->get();
+        return view('admin.backend.pages.admin.all_admin',compact('allAdmin'));
+    }
+
+    public function AddAdmin(){
+        $roles = Role::all();
+        return view('admin.backend.pages.admin.add_admin',compact('roles'));
+    }
+
+    public function StoreAdmin(Request $request){
+
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = '1';
+        $user->save();
+
+
+        if ($request->roles){
+            $user->assignRole($request->roles);
+        }
+
+        $notification = array(
+            'message' => 'Admin Created Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('admin.all')->with($notification);
+    }
+
+    public function AdminRoleEdit($id){
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('admin.backend.pages.admin.edit_admin_role',compact('user','roles'));
+    }
+
+    public function AdminRoleUpdate(Request $request, $id){
+
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        if ($request->password){
+            $user->password = Hash::make($request->password);
+        }
+        $user->role = 'admin';
+        $user->status = '1';
+        $user->save();
+
+    $user->roles()->detach();
+        if ($request->roles){
+            $user->assignRole($request->roles);
+        }
+
+        $notification = array(
+            'message' => 'Admin Role Updated Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('admin.all')->with($notification);
+    }
+
+    public function AdminRoleDelete($id){
+        $user = User::find($id);
+        if (!is_null($user)){
+            $user->delete();
+        }
+
+        $notification = array(
+            'message' => 'Admin Deleted Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
 
     }
 

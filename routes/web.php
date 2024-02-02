@@ -207,6 +207,16 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/admin/role-by-permission','RoleByPermission')->name('role.assigned.permission');
     });
 
+    //Routes for all role in admin panel
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('/admin/all','AllAdmin')->name('admin.all');
+        Route::get('/admin/add','AddAdmin')->name('admin.add');
+        Route::post('/admin/role/store','StoreAdmin')->name('admin.role.store');
+        Route::get('/admin/role/edit/{id}','AdminRoleEdit')->name('admin.edit.role');;
+        Route::post('/admin/role/update/{id}','AdminRoleUpdate')->name('admin.role.update');;
+        Route::get('/admin/role/delete/{id}','AdminRoleDelete')->name('admin.delete.role');;
+    });
+
 }); //End Admin Group Middleware
 
 
