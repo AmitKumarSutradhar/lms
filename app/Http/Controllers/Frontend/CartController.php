@@ -27,7 +27,7 @@ class CartController extends Controller
         });
 
         if ($cartItem->isNotEmpty()) {
-            return response()->json(['error' => 'Course is already in your cart']);
+            return response()->json(['errors' => 'Course is already in your cart']);
         }
 
         if ($course->discount_price == NULL) {
@@ -145,7 +145,7 @@ class CartController extends Controller
                 'success' => 'Coupon Applied Successfully.'
             ));
         } else {
-            return response()->json(['error' => 'Invalid Coupon.']);
+            return response()->json(['errors' => 'Invalid Coupon.']);
         }
 
     }
@@ -167,12 +167,12 @@ class CartController extends Controller
                 ));
             } else{
                 return response()->json(array(
-                   'error' => 'Course does not fulfill the coupon requirement'
+                   'errors' => 'Course does not fulfill the coupon requirement'
                 ));
             }
         } else {
             return response()->json(array(
-                'error' => 'Invalid Coupon'
+                'errors' => 'Invalid Coupon'
             ));
         }
     }
@@ -208,7 +208,7 @@ class CartController extends Controller
         });
 
         if ($cartItem->isNotEmpty()) {
-            return response()->json(['error' => 'Course is already in your cart']);
+            return response()->json(['errors' => 'Course is already in your cart']);
         }
 
         if ($course->discount_price == NULL) {

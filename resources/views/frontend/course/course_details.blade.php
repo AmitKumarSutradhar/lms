@@ -463,7 +463,6 @@
                                                 @endif
                                             </div>
 
-
                                         </div>
                                         <span class="d-block lh-18 pb-2">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                         <p class="pb-2">{{ $item->comment }}</p>

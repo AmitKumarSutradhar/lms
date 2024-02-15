@@ -6391,8 +6391,8 @@ div.datedropper .picker .pick-lg-b li {
 .hero-slider-item {
   position: relative;
   z-index: 2;
-  padding-top: 200px;
-  padding-bottom: 270px; }
+  padding-top: 180px;
+  padding-bottom: 250px; }
   @media (max-width: 480px) {
     .hero-slider-item {
       padding-top: 120px;
@@ -6403,7 +6403,8 @@ div.datedropper .picker .pick-lg-b li {
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: #233d63;
+    /*background-color: #233d63;*/
+    background-color: rgba(0, 0, 0, 0.8);
     opacity: .90;
     content: "";
     z-index: -1; }

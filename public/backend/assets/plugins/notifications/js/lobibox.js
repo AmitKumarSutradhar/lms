@@ -23,7 +23,7 @@ var Lobibox = Lobibox || {};
         return new LobiboxProgress(options);
     };
     //Create empty objects in order user to be able to set default options in the following way
-    //Lobibox.error.DEFAULT_OPTIONS = object;
+    //Lobibox.errors.DEFAULT_OPTIONS = object;
     //Lobibox.success.DEFAULT_OPTIONS = object;
     //Lobibox.warning.DEFAULT_OPTIONS = object;
     //Lobibox.info.DEFAULT_OPTIONS = object;
@@ -538,7 +538,7 @@ var Lobibox = Lobibox || {};
         bodyClass: 'lobibox-open',
 
         modalClasses: {
-            'error': 'lobibox-error',
+            'error': 'lobibox-errors',
             'success': 'lobibox-success',
             'info': 'lobibox-info',
             'warning': 'lobibox-warning',
@@ -701,12 +701,12 @@ var Lobibox = Lobibox || {};
 
         isValid: function () {
             var me = this,
-                $error = me.$el.find('.lobibox-input-error-message');
+                $error = me.$el.find('.lobibox-input-errors-message');
 
             if (me.$options.required && !me.getValue()){
                 me.$input.addClass('invalid');
                 if ($error.length === 0){
-                    me.$el.find('.lobibox-body').append('<p class="lobibox-input-error-message">'+me.$options.errorMessage+'</p>');
+                    me.$el.find('.lobibox-body').append('<p class="lobibox-input-errors-message">'+me.$options.errorMessage+'</p>');
                     me._position();
                     me.$input.focus();
                 }
@@ -1164,7 +1164,7 @@ var Lobibox = Lobibox || {};
         this.$el = null;
 //------------------------------------------------------------------------------
 //-----------------PRIVATE VARIABLES--------------------------------------------
-//------------------------------------------------------------------------------        
+//------------------------------------------------------------------------------
         var me = this;
 //------------------------------------------------------------------------------
 //-----------------PRIVATE FUNCTIONS--------------------------------------------
@@ -1488,7 +1488,7 @@ var Lobibox = Lobibox || {};
     };
     //User can set default options to this variable
     Lobibox.notify.DEFAULTS = {
-        title: true,                // Title of notification. If you do not include the title in options it will automatically takes its value 
+        title: true,                // Title of notification. If you do not include the title in options it will automatically takes its value
         //from Lobibox.notify.OPTIONS object depending of the type of the notifications or set custom string. Set this false to disable title
         size: 'normal',             // normal, mini, large
         soundPath: 'sounds/',   // The folder path where sounds are located
@@ -1541,7 +1541,7 @@ var Lobibox = Lobibox || {};
             sound: 'sound2'
         },
         error: {
-            'class': 'lobibox-notify-error',
+            'class': 'lobibox-notify-errors',
             'title': 'Error',
             sound: 'sound4'
         },

@@ -3097,7 +3097,7 @@ var FullCalendar = (function (exports) {
             var state = this.getCurrentData();
             var selection = parseDateSpan(selectionInput, state.dateEnv, createDuration({ days: 1 }) // TODO: cache this?
             );
-            if (selection) { // throw parse error otherwise?
+            if (selection) { // throw parse errors otherwise?
                 this.dispatch({ type: 'SELECT_DATES', selection: selection });
                 triggerDateSelect(selection, null, state);
             }
@@ -3238,7 +3238,7 @@ var FullCalendar = (function (exports) {
                 return sourceInput;
             }
             var eventSource = parseEventSource(sourceInput, state);
-            if (eventSource) { // TODO: error otherwise?
+            if (eventSource) { // TODO: errors otherwise?
                 this.dispatch({ type: 'ADD_EVENT_SOURCES', sources: [eventSource] });
                 return new EventSourceApi(state, eventSource);
             }
@@ -6823,7 +6823,7 @@ var FullCalendar = (function (exports) {
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week

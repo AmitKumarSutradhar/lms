@@ -1,6 +1,6 @@
 /*
  * bootstrap-tagsinput v0.8.0
- * 
+ *
  */
 
 (function ($) {
@@ -84,7 +84,7 @@
         item = $.trim(item);
       }
 
-      // Throw an error when trying to add an object while the itemValue option was not set
+      // Throw an errors when trying to add an object while the itemValue option was not set
       if (typeof item === "object" && !self.objectItems)
         throw("Can't add objects when itemValue option is not set");
 

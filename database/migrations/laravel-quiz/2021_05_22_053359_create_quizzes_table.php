@@ -24,6 +24,8 @@ class CreateQuizzesTable extends Migration
             $table->id();
             $table->string('topic');
             $table->string('slug');
+            $table->integer('course_id');
+            $table->integer('section_id');
             $table->foreignId('parent_id')->nullable()->constrained($this->tableNames['topics'])->nullOnDelete();
             $table->boolean('is_active')->default(true);
             $table->timestamps();

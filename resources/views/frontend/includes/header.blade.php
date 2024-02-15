@@ -106,8 +106,13 @@
                             </div><!-- end menu-category -->
                             <form method="post">
                                 <div class="form-group mb-0">
-                                    <input class="form-control form--control pl-3" type="text" name="search" placeholder="Search for anything">
-                                    <span class="la la-search search-icon"></span>
+{{--                                    <input class="form-control form--control pl-3" type="text" name="search" id="courseLiveSearch" placeholder="Search for anything">--}}
+{{--                                    <span class="la la-search search-icon"></span>--}}
+                                    <ul>
+                                        <li>
+                                            <input type="text" class="form-control" name="search" id="search_text" onkeyup="search_data(this.value, 'result')" placeholder="Search">
+                                        </li>
+                                    </ul><!-- end ul -->
                                 </div>
                             </form>
                             <nav class="main-menu">
@@ -149,7 +154,7 @@
                                 </ul>
                             </div><!-- end shop-cart -->
                             <div class="nav-right-button">
-                                <a href="admission.html" class="btn theme-btn d-none d-lg-inline-block"><i class="la la-user-plus mr-1"></i> Admission</a>
+                                <a href="{{ route('register') }}" class="btn theme-btn d-none d-lg-inline-block"><i class="la la-user-plus mr-1"></i> Admission</a>
                             </div><!-- end nav-right-button -->
                         </div><!-- end menu-wrapper -->
                     </div><!-- end col-lg-10 -->
@@ -375,3 +380,7 @@
     </div><!-- end mobile-search-form -->
     <div class="body-overlay"></div>
 </header>
+
+
+
+

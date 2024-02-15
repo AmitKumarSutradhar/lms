@@ -19,18 +19,32 @@
             </a>
         </li>
 
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label">Modules</li>
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-category'></i>
+                <div class="parent-icon"><i class='bx bx-tag-alt'></i>
                 </div>
-                <div class="menu-title">Manage Category</div>
+                <div class="menu-title">Category</div>
             </a>
             <ul>
                 <li> <a href="{{route('all.category')}}"><i class='bx bx-radio-circle'></i>All Category</a>
                 </li>
                 <li> <a href="{{route('all.subcategory')}}"><i class='bx bx-radio-circle'></i>All Sub-Category</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-category'></i>
+                </div>
+                <div class="menu-title">Banner</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('banner.index')}}"><i class='bx bx-radio-circle'></i>All Banner</a>
+                </li>
+                <li> <a href="{{route('banner.create')}}"><i class='bx bx-radio-circle'></i>Add Banner</a>
                 </li>
             </ul>
         </li>

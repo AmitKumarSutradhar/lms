@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         http_response_code(200);
         echo "Thank You! Your message has been sent.";
     } else {
-        # Set a 500 (internal server error) response code.
+        # Set a 500 (internal server errors) response code.
         http_response_code(500);
         echo "Oops! Something went wrong, we couldn't send your message.";
     }

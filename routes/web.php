@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\QuizController;
+use App\Http\Controllers\Backend\BannerController;
 
 
 
@@ -58,6 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-question',[QuestionController::class,'UserQuestion'])->name('user.question');
 
 
+    // Take Quiz Test all Routes
+    Route::get('/take-quiz-test/{course_id}/{sec_id}',[QuizController::class,'TakeQuizTestView'])->name('quiz.take.test');
+    Route::post('/take-quiz-test-attempt',[QuizController::class,'TakeQuizTestAttempt'])->name('quiz.take.test.attempt');
+//    Route::get('/take-quiz-test-result',[QuizController::class,'QuizResultView'])->name('quiz.take.test.attempt.result');
+    Route::post('/take-quiz-test-result/info',[QuizController::class,'QuizResultViewInfo'])->name('quiz.take.test.attempt.result.info');
+
+
 });
 
 require __DIR__.'/auth.php';
@@ -91,6 +99,10 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::post('/update-subcategory','UpdateSubCategory')->name('update.subcategory');
         Route::get('/delete-subcategory/{id}','DeleteSubCategory')->name('delete.subcategory');
     });
+
+
+    //Admin Dashboard Banner Routes
+    Route::resource('banner',BannerController::class);
 
     //Admin Dashboard Instructor All Routes
     Route::controller(AdminController::class)->group(function (){
@@ -261,9 +273,16 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
         Route::post('/save-quiz','SaveQuiz')->name('save.quiz');
         Route::get('/quiz/{id}','ViewQuiz')->name('view.quiz');
         Route::post('/question','AddQuestion')->name('add.quiz.question');
+        Route::post('/question/assign-mark','QuestionAssignMark')->name('quiz.question.assign.mark');
 //        Route::get('/edit-lecture/{id}','EditLecture')->name('edit.lecture');
 //        Route::post('/update-lecture','UpdateLecture')->name('update.course.lecture');
 //        Route::get('/delete-lecture/{id}','DeleteLecture')->name('delete.lecture');
+
+
+
+//        Question Answer Save
+        Route::post('/save-quiz-answer','SaveQuestionAnswerOption')->name('quiz.answer.option.store');
+//        Route::get('/take-quiz-test/{secId}','TakeQuizTest')->name('quiz.take.test');
     });
 
 
@@ -300,6 +319,14 @@ Route::middleware(['auth','roles:instructor'])->group(function (){
 });
 
 //Route Accessible by Anyone
+
+//Live Search Functionality
+//Route::post('/live-search',[IndexController::class,'LiveSearchCourse'])->name('course.live.search');
+
+Route::get('demos/vuesearch',[IndexController::class,'showVueSearch']);
+Route::post('demos/vuesearch',[IndexController::class,'getVueSearch']);
+
+
 Route::get('/instructor/login',[InstructorController::class,'InstructorLogin'])->name('instructor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/instructor/{id}',[InstructorController::class,'InstructorDetails'])->name('instructor.details');
 

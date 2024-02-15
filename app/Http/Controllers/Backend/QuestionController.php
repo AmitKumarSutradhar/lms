@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\UserQuestion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class QuestionController extends Controller
 
     public function InstructorAllQuestion(){
         $id = Auth::user()->id;
-        $question = Question::where('instructor_id',$id)->where('parent_id',null)->orderBy('id','DESC')->get();
+        $question = UserQuestion::where('instructor_id',$id)->where('parent_id',null)->orderBy('id','DESC')->get();
         return view('instructor.question.all_question',compact('question'));
     }
 

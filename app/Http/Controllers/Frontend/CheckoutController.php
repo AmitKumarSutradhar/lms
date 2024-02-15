@@ -32,7 +32,7 @@ class CheckoutController extends Controller
             } else {
                 $notification = array(
                     'message' => 'Your Cart is empty',
-                    'alert-type' => 'error',
+                    'alert-type' => 'errors',
                 );
 
                 return redirect()->to('/')->with($notification);
@@ -40,7 +40,7 @@ class CheckoutController extends Controller
         } else {
             $notification = array(
                 'message' => 'Please login/register',
-                'alert-type' => 'error',
+                'alert-type' => 'errors',
             );
 
             return redirect()->route('login')->with($notification);
@@ -95,7 +95,7 @@ class CheckoutController extends Controller
                 if ($existingOrder){
                     $notification = array(
                         'message'       => 'You have already enrolled in this course',
-                        'alert-type'    => 'error',
+                        'alert-type'    => 'errors',
                     );
 
                     return redirect()->back()->with($notification);

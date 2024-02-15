@@ -950,19 +950,26 @@
                                         <ul class="curriculum-sidebar-list">
                                             @foreach($lecture as $lec)
                                                 <li class="course-item-link active">
-                                                <div class="course-item-content-wrap">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="courseCheckbox" required>
-                                                        <label class="custom-control-label custom--control-label" for="courseCheckbox"></label>
-                                                    </div><!-- end custom-control -->
-                                                    <div class="course-item-content">
-                                                        <h4 class="fs-15 lecture-title" data-video-url="{{ $lec->url }}" data-content="{!! $lec->content !!}">{{ $lec->lecture_title }}</h4>
-                                                        <div class="courser-item-meta-wrap">
-                                                            <p class="course-item-meta"><i class="la la-play-circle"></i>2min</p>
-                                                        </div>
-                                                    </div><!-- end course-item-content -->
-                                                </div><!-- end course-item-content-wrap -->
-                                            </li>
+                                                    <div class="course-item-content-wrap">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="courseCheckbox" required>
+                                                            <label class="custom-control-label custom--control-label" for="courseCheckbox"></label>
+                                                        </div><!-- end custom-control -->
+                                                        <div class="course-item-content">
+                                                            <h4 class="fs-15 lecture-title" data-video-url="{{ $lec->url }}" data-content="{!! $lec->content !!}">{{ $lec->lecture_title }}</h4>
+                                                            <div class="courser-item-meta-wrap">
+                                                                <p class="course-item-meta"><i class="la la-play-circle"></i>2min</p>
+                                                            </div>
+                                                        </div><!-- end course-item-content -->
+                                                    </div><!-- end course-item-content-wrap -->
+{{--                                                    <form action="{{ route('quiz.take.test') }}" method="POST">--}}
+{{--                                                        <input type="hidden" name="course_id" value="{{ $course->course->id  }}">--}}
+{{--                                                        <input type="hidden" name="section_id" value="{{ $sec->id }}">--}}
+
+{{--                                                        <button type="submit" class="btn btn-success px-5">Take a test</button>--}}
+{{--                                                    </form>--}}
+                                                    <a href="{{ route('quiz.take.test', [ 'course_id' => $course->course->id, 'sec_id' =>$sec->id  ]) }}" class="btn btn-success px-5">Take a test</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div><!-- end card-body -->

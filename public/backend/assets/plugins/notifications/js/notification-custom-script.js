@@ -23,7 +23,7 @@ function warning_noti() {
 		pauseDelayOnHover: true,
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
-		icon: 'bx bx-error',
+		icon: 'bx bx-errors',
 		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
 	});
 }
@@ -79,7 +79,7 @@ function round_warning_noti() {
 		size: 'mini',
 		rounded: true,
 		delayIndicator: false,
-		icon: 'bx bx-error',
+		icon: 'bx bx-errors',
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
@@ -136,7 +136,7 @@ function img_info_noti() {
 function img_warning_noti() {
 	Lobibox.notify('warning', {
 		pauseDelayOnHover: true,
-		icon: 'bx bx-error',
+		icon: 'bx bx-errors',
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		img: 'assets/plugins/notifications/img/3.jpg', //path to image
@@ -190,7 +190,7 @@ function pos2_info_noti() {
 function pos3_warning_noti() {
 	Lobibox.notify('warning', {
 		pauseDelayOnHover: true,
-		icon: 'bx bx-error',
+		icon: 'bx bx-errors',
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		size: 'mini',
@@ -249,7 +249,7 @@ function anim3_noti() {
 	Lobibox.notify('warning', {
 		pauseDelayOnHover: true,
 		continueDelayOnInactiveTab: false,
-		icon: 'bx bx-error',
+		icon: 'bx bx-errors',
 		position: 'center top',
 		showClass: 'zoomIn',
 		hideClass: 'zoomOut',

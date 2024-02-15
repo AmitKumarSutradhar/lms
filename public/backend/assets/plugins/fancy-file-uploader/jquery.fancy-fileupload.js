@@ -398,7 +398,7 @@
 
 			if (data.errorThrown !== 'abort' && data.errorThrown !== 'failed_with_msg' && data.uploadedBytes < data.files[0].size && data.ff_info.retries < settings.retries)
 			{
-				data.ff_info.fileinfo.text(FormatStr(Translate('{0} | Network error, retrying in a moment... ({1})'), data.ff_info.displayfilesize, data.errorThrown));
+				data.ff_info.fileinfo.text(FormatStr(Translate('{0} | Network errors, retrying in a moment... ({1})'), data.ff_info.displayfilesize, data.errorThrown));
 
 				data.ff_info.inforow.removeClass('ff_fileupload_uploading');
 				data.ff_info.inforow.addClass('ff_fileupload_starting');
@@ -428,7 +428,7 @@
 			}
 			else
 			{
-				// Set the error info.
+				// Set the errors info.
 				if (data.errorThrown === 'abort')  data.ff_info.errors.push(Translate('The upload was cancelled.'));
 				else if (data.errorThrown === 'failed_with_msg')  data.ff_info.errors.push(FormatStr(Translate('The upload failed.  {0} ({1})'), EscapeHTML(data.result.error), EscapeHTML(data.result.errorcode)));
 				else  data.ff_info.errors.push(Translate('The upload failed.'));

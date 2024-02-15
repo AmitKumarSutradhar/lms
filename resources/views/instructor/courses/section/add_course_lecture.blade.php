@@ -32,7 +32,7 @@
                                             @php
                                                 $availableQuiz = \Harishdurga\LaravelQuiz\Models\Quiz::where('course_id',$course->id)->where('section_id',$item->id)->first();
                                             @endphp
-                                            @if($availableQuiz->count() > 0)
+                                            @if($availableQuiz)
                                                 <span class="mx-1"><a class="btn btn-warning" href="{{ route('view.quiz',$availableQuiz->id) }}" id="addQuizBtn($key)">View Quiz</a></span>
                                             @else
                                                 <span class="mx-1"><a class="btn btn-warning" onclick="addQuizDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addQuizBtn($key)">Add Quiz</a></span>
@@ -197,20 +197,6 @@
             const newQuizDiv = document.createElement('div');
             newQuizDiv.classList.add('quizDiv','mb-3');
 
-            // newQuizDiv.innerHTML = `
-            //     <div class="container">
-            //         <h6>Quiz Title</h6>
-            //         <input type="text" name="name" id="" class="form-control my-1" placeholder="Enter Quiz">
-            //         <input type="text" name="total_marks" id="" class="form-control my-1" placeholder="Total Marks">
-            //         <input type="text" name="pass_marks" id="" class="form-control my-1" placeholder="Pass Marks">
-            //
-            //
-            //         <button class="btn btn-primary mt-3" onclick="saveQuiz('${courseId}', '${sectionId}', '${containerId}')">Save Quiz</button>
-            //         <button class="btn btn-primary mt-3" onclick="hideQuizContainer('${containerId}')">Cancel</button>
-            //     </div>
-            // `;
-
-
             newQuizDiv.innerHTML = `
                 <form action="{{ route('save.quiz') }}" method="post" class="container">
                 @csrf
@@ -239,67 +225,5 @@
             location.reload();
         }
     </script>
-
-{{--    <script>--}}
-{{--        function saveQuiz(courseId, sectionId, containerId) {--}}
-{{--            const quizContainer = document.getElementById(containerId);--}}
-{{--            const quizTitle = quizContainer.querySelector('input[name="name"]').value;--}}
-{{--            const totalMarks = quizContainer.querySelector('input[name="total_marks"]').value;--}}
-{{--            const passMarks = quizContainer.querySelector('input[name="pass_marks"]').value;--}}
-
-{{--            fetch('/save-quiz',{--}}
-{{--                method: 'POST',--}}
-{{--                headers: {--}}
-{{--                    'Content-Type' : 'application/json',--}}
-{{--                    'X-CSRF-TOKEN' : '{{ csrf_token() }}',--}}
-{{--                },--}}
-{{--                body: JSON.stringify({--}}
-{{--                    course_id: courseId,--}}
-{{--                    section_id: sectionId,--}}
-{{--                    quiz_title: quizTitle,--}}
-{{--                    total_marks: totalMarks,--}}
-{{--                    pass_mark: passMarks--}}
-{{--                })--}}
-{{--            })--}}
-
-{{--            .then(response => response.json())--}}
-{{--            .then(data => {--}}
-{{--                console.log(data)--}}
-
-{{--                quizContainer.style.display = 'none';--}}
-{{--                location.reload();--}}
-
-{{--                // Start Message--}}
-
-{{--                const Toast = Swal.mixin({--}}
-{{--                    toast: true,--}}
-{{--                    position: 'top-end',--}}
-{{--                    icon: 'success',--}}
-{{--                    showConfirmButton: false,--}}
-{{--                    timer: 6000--}}
-{{--                })--}}
-{{--                if ($.isEmptyObject(data.error)) {--}}
-
-{{--                    Toast.fire({--}}
-{{--                        type: 'success',--}}
-{{--                        title: data.success,--}}
-{{--                    })--}}
-
-{{--                }else{--}}
-
-{{--                    Toast.fire({--}}
-{{--                        type: 'error',--}}
-{{--                        title: data.error,--}}
-{{--                    })--}}
-{{--                }--}}
-
-{{--                // End Message--}}
-
-{{--            })--}}
-{{--            .catch(error => {--}}
-{{--                console.error(error)--}}
-{{--            })--}}
-{{--        }--}}
-{{--    </script>--}}
 
 @endsection

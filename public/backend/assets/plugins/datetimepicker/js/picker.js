@@ -18,7 +18,7 @@
     // Browser globals.
     else if ( typeof window == 'object' )
         window.Picker = factory( jQuery )
-    
+
     else this.Picker = factory( jQuery )
 
 }(function( $ ) {
@@ -1203,7 +1203,7 @@ function ariaAttr(attribute, data) {
     return data
 }
 
-// IE8 bug throws an error for activeElements within iframes.
+// IE8 bug throws an errors for activeElements within iframes.
 function getActiveElement() {
     try {
         return document.activeElement

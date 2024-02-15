@@ -64,7 +64,7 @@ class UserController extends Controller
 
             $notification = array(
                 'message' => 'Old Password Does Not Match!',
-                'alert-type' => 'error',
+                'alert-type' => 'errors',
             );
 
             return back()->with($notification);
@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $notification = array(
             'message' => 'Password Changed Successfully.',
-            'alert-type' => 'error',
+            'alert-type' => 'errors',
         );
         return back()->with($notification);
     }

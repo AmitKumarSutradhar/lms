@@ -38,4 +38,32 @@ class IndexController extends Controller
         $categories = Category::latest()->get();
         return view('frontend.category.subcategory_all',compact('courses','subcategory','categories'));
     }
+
+    public function showVueSearch()
+    {
+        return view('frontend.home.includes.header');
+    }
+
+    public function getVueSearch(Request $request)
+    {
+        $search =  $request->search;
+
+        $courses = '';
+
+        if (trim($request->search)) {
+            $courses = Post::where('title','LIKE',"%{$search}%")
+                ->orderBy('created_at','DESC')->limit(5)->get();
+
+            $courses = $courses->map(function ($course, $key) {
+                return [
+                    'title' => $course['course_title'],
+                    'url'  => url('course/'.$course['course_name_slug']),
+                    'image' => Helper::catch_first_image($course['body']),
+                ];
+            });
+        }
+
+        return $courses;
+    }
+
 }
