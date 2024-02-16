@@ -12,7 +12,7 @@
         <div class=""></div>
         <h1 class="text-center mb-4">{{ $quiz->name }}</h1>
         <div class="">
-            <h4>Total Score: {{ $quiz->total_marks }}</h4>
+            <h4>Total Score: {{ $quizAttemptScore . '/' .$quiz->total_marks }}</h4>
         </div>
     </div>
 
@@ -21,10 +21,6 @@
         <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
 
     <!-- Questions -->
-        @php
-            $markCount = 0;
-        @endphp
-        <p>{{ $quizAttemptScore  }}</p>
         @foreach($quizAttemptAnswers as $quizAttemptAnswer)
             <div class="card mb-4">
                 <div class="card-body">
@@ -40,13 +36,6 @@
 
                     @foreach($quizQuestionOptions as $quizQuestionOption)
                         <div class="form-check">
-                            @if($quizAttemptAnswer->question_option_id == ($quizQuestionOption->is_correct == 1))
-                                <p>{{ $markCount }}</p>
-                                @php
-                                    $markCount = $markCount + $quizAttemptAnswer->quiz_question->marks;
-                                @endphp
-                            @endif
-{{--                            <p>{{$quizAttemptAnswer->quiz_question->question->id == $quizQuestionOption->question->id ? $quizQuestionOption->quiz_questions->marks : ''}}</p>--}}
                             <input class="form-check-input" type="radio" name="question_id_[{{$quizAttemptAnswer->quiz_question->question->id}}][]" id="q1Option{{ $quizQuestionOption->id }}" value="{{ $quizQuestionOption->id }}" {{ $quizAttemptAnswer->question_option_id == $quizQuestionOption->id ? 'checked' : '' }} disabled>
                             <label class="form-check-label" for="q1Option{{ $quizQuestionOption->id }}">
                                 {{ $quizQuestionOption->name }}
@@ -56,10 +45,6 @@
                 </div>
             </div>
         @endforeach
-{{--        <p>{{ $markCount }}</p>--}}
-        <div class="text-center p-3">
-{{--            <h4>Your Score: {{ $markCount }} / {{ $quiz->total_marks }}</h4>--}}
-        </div>
 
     </div>
 

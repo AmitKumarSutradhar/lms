@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\QuizController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\ChatController;
 
 
 
@@ -374,6 +375,9 @@ Route::get('/blogs',[BlogController::class,'AllBlog'])->name('blog.all');
 
 
 Route::post('/mark-notification-as-read/{notification}',[CartController::class,'MarkAsRead']);
+
+
+Route::post('/send-message',[ChatController::class,'SendMessage']);
 
 //End Route Accessible by Anyone
 

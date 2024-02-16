@@ -16,7 +16,7 @@
                     </div>
                     <div class="media-body">
                         <h2 class="section__title fs-30">{{ $instructor->name }}</h2>
-                        <span class="d-block lh-18 pt-1 pb-2">Joined {{ \Carbon\Carbon::parse($instructor->created_at)->diffForHumans() }} </span>
+                        <span class="d-block lh-18 pt-1 pb-2">Joined {{  \Carbon\Carbon::parse($instructor->created_at)->diffForHumans() }} </span>
                         <p class="lh-18">Web Developer, Designer, and Teacher</p>
                     </div>
                 </div><!-- end media -->
@@ -39,7 +39,7 @@
                 @if(\Illuminate\Support\Facades\Auth::user())
                     <div class="">
                         <div id="app" class="w-100">
-                            <send-message></send-message>
+                            <send-message :receiverid="{{ $instructor->id }}" receivername="{{ $instructor->name }}"></send-message>
                         </div>
                     </div>
                 @else
