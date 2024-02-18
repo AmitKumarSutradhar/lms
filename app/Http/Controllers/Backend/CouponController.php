@@ -73,7 +73,7 @@ class CouponController extends Controller
 //    Instructor Cupons
     public function InstructorAllCoupons(){
         $id = Auth::user()->id;
-        $coupon = Coupon::where('user_id',$id)->latest()->get();
+        $coupon = Coupon::where('user_id',$id)->orWhere('instructor_id',$id)->latest()->get();
         return view('instructor.coupon.coupon_all',compact('coupon'));
     }
 

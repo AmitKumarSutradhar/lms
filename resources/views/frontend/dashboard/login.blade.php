@@ -11,7 +11,7 @@
                     <h2 class="section__title text-white">Login</h2>
                 </div>
                 <ul class="generic-list-item generic-list-item-white generic-list-item-arrow d-flex flex-wrap align-items-center">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                     <li>Pages</li>
                     <li>Login</li>
                 </ul>
@@ -79,7 +79,7 @@
                                         <a href="recover.html" class="btn-text">Forgot my password?</a>
                                     </div>
                                     <button class="btn theme-btn" type="submit">Login Account <i class="la la-arrow-right icon ml-1"></i></button>
-                                    <p class="fs-14 pt-2">Don't have an account? <a href="sign-up.html" class="text-color hover-underline">Register</a></p>
+                                    <p class="fs-14 pt-2">Don't have an account? <a href="{{ route('register') }}" class="text-color hover-underline">Register</a></p>
                                 </div><!-- end btn-box -->
                             </form>
                         </div><!-- end card-body -->

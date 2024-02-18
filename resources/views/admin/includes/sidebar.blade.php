@@ -143,21 +143,30 @@
             </ul>
         </li>
 
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-link"></i>
-                </div>
-                <div class="menu-title">Blog</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('admin.blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Category</a>
-                </li>
-                <li> <a href="{{ route('admin.blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a>
-                </li>
-            </ul>
-        </li>
 
-        @if(Auth::user()->can('site.setting'))
+        @if(Auth::user()->can('site.settings'))
+
+        @endif
+
+
+        @if(Auth::user()->can('blog'))
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bx bx-link"></i>
+                    </div>
+                    <div class="menu-title">Blog</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin.blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Category</a>
+                    </li>
+                    <li> <a href="{{ route('admin.blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
+
+        @if(Auth::user()->can('settings'))
             <li>
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class="bx bxl-dev-to"></i>
@@ -171,6 +180,10 @@
                     </li>
                 </ul>
             </li>
+        @endif
+
+        @if(Auth::user()->can('site.settings'))
+
         @endif
 
         <li>
@@ -208,16 +221,6 @@
                 <li> <a href="{{ route('admin.add') }}"><i class='bx bx-radio-circle'></i>Add Admin</a></li>
             </ul>
         </li>
-
-
-
-{{--        <li>--}}
-{{--            <a href="https://themeforest.net/user/codervent" target="_blank">--}}
-{{--                <div class="parent-icon"><i class="bx bx-support"></i>--}}
-{{--                </div>--}}
-{{--                <div class="menu-title">Support</div>--}}
-{{--            </a>--}}
-{{--        </li>--}}
     </ul>
     <!--end navigation-->
 </div>

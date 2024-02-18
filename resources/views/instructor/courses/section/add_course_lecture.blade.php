@@ -29,9 +29,11 @@
                                         <h6>{{ $item->section_title }}</h6>
                                         <div class="d-flex justify-content-between align-item-center">
                                             <a class="btn btn-primary" onclick="addLectureDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addLectureBtn($key)">Add Lecture</a>
+{{--                                            @if('')--}}
                                             @php
                                                 $availableQuiz = \Harishdurga\LaravelQuiz\Models\Quiz::where('course_id',$course->id)->where('section_id',$item->id)->first();
                                             @endphp
+
                                             @if($availableQuiz)
                                                 <span class="mx-1"><a class="btn btn-warning" href="{{ route('view.quiz',$availableQuiz->id) }}" id="addQuizBtn($key)">View Quiz</a></span>
                                             @else

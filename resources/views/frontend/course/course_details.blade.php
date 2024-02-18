@@ -486,7 +486,7 @@
                                 <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
                                 <p><b>To review this course, you need to <a href="{{ route('login') }}">login</a> first.</b></p>
 
-                                <form action="{{ route('store.review') }}" method="post" class="row">
+                                <form class="row">
                                     @csrf
                                     <div class="leave-rating-wrap pb-4 d-flex flex-wrap">
                                         <div class="leave-rating leave--rating">
@@ -525,21 +525,25 @@
                             <div class="course-overview-card pt-4">
                                 <form action="{{ route('store.review') }}" method="post" class="row">
                                     @csrf
-                                    <div class="leave-rating-wrap pb-4 d-flex flex-wrap">
+                                    <div class="leave-rating-wrap pb-4 d-flex flex-wrap col-lg-12">
                                         <div class="leave-rating leave--rating">
                                             <div class="btn-box col-lg-12">
                                                 <h5>Rating: </h5>
                                             </div>
-                                            <input type="radio" name='rate' id="star5" value="1" />
-                                            <label for="star5"></label>
-                                            <input type="radio" name='rate' id="star4" value="2" />
-                                            <label for="star4"></label>
-                                            <input type="radio" name='rate' id="star3" value="3" />
-                                            <label for="star3"></label>
-                                            <input type="radio" name='rate' id="star2" value="4" />
-                                            <label for="star2"></label>
-                                            <input type="radio" name='rate' id="star1" value="5" />
-                                            <label for="star1"></label>
+                                            <div class="leave-rating-wrap ">
+                                                <div class="leave-rating leave--rating">
+                                                    <input type="radio" name='rate' id="star5" value="5" />
+                                                    <label for="star5"></label>
+                                                    <input type="radio" name='rate' id="star4" value="4"/>
+                                                    <label for="star4"></label>
+                                                    <input type="radio" name='rate' id="star3" value="3"/>
+                                                    <label for="star3"></label>
+                                                    <input type="radio" name='rate' id="star2" value="2"/>
+                                                    <label for="star2"></label>
+                                                    <input type="radio" name='rate' id="star1" value="1"/>
+                                                    <label for="star1"></label>
+                                                </div><!-- end leave-rating -->
+                                            </div>
                                         </div><!-- end leave-rating -->
                                     </div>
 

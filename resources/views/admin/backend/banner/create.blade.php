@@ -61,7 +61,7 @@
 
                     <div class="col-md-6 form-group">
                         <label for="input1" class="form-label">Button Banner Position</label>
-                        <select name="position" id="" class="form-select mb-3">
+                        <select name="position" id="" class="form-select mb-3 @error('position') is-invalid @enderror">
                             <option value="" selected disabled>-- Select Type --</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -69,6 +69,9 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                        @error('position')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6 form-group">

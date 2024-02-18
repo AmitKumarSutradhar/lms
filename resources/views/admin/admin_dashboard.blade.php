@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('admin.includes.style')
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <title>Easy Learn School</title>
 </head>
 
 <body>

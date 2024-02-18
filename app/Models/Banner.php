@@ -48,7 +48,7 @@ class Banner extends Model
             }
             self::$imageUrl = self::getImageUrl($request);
         } else {
-            self::$imageUrl = $banner->image;
+            self::$imageUrl = $banner->image_url;
         }
 
         $banner->title_one          = $request->title_one;

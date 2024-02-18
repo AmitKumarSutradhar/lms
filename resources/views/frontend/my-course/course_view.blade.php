@@ -684,7 +684,7 @@
                                                         </div><!-- end media -->
 
                                                         @php
-                                                            $reply = \App\Models\Question::where('parent_id',$que->id)->get();
+                                                            $reply = \App\Models\UserQuestion::where('parent_id',$que->id)->get();
                                                         @endphp
                                                         {{--  Reply --}}
                                                         @foreach($reply as $rep)

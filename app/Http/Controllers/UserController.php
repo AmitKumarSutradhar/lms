@@ -92,4 +92,10 @@ class UserController extends Controller
 
         return redirect('/login');
     }
+
+
+    public function LiveChat(){
+        return view('frontend.dashboard.live_chat');
+    }
+
 }

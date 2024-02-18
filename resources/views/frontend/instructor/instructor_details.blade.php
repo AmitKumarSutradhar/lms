@@ -220,9 +220,19 @@
             <div class="container">
                 <ul class="nav nav-tabs generic-tab justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <div id="app">
-                            <send-message></send-message>
-                        </div>
+                        @if(\Illuminate\Support\Facades\Auth::user())
+                            <div class="">
+                                <div id="app" class="w-100">
+                                    <send-message :receiverid="{{ $instructor->id }}" receivername="{{ $instructor->name }}"></send-message>
+                                </div>
+                            </div>
+                        @else
+                            <div class="">
+                                <button type="button" class="btn theme-btn pulse-btn mx-2" disabled>
+                                    Please login/register to chat
+                                </button>
+                            </div>
+                        @endif
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" id="about-me-tab" data-toggle="tab" href="#about-me" role="tab" aria-controls="about-me" aria-selected="false">

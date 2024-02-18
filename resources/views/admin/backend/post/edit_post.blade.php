@@ -1,7 +1,6 @@
 @extends('admin.admin_dashboard')
 
 @section('body')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -17,7 +16,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('admin.blog.post.add') }}" class="btn btn-primary px-5">Add Blog Post</a>
+                    <a href="{{ route('admin.blog.post.add') }}" class="btn btn-primary px-5">Update Blog Post</a>
                 </div>
             </div>
         </div>
@@ -47,7 +46,8 @@
 
                     <div class="col-md-12 form-group">
                         <label for="input1" class="form-label">Description</label>
-                        <textarea name="long_description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;">{!! $post->long_description !!}</textarea>
+{{--                        <textarea name="long_description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;">{!! $post->long_description !!}</textarea>--}}
+                        <textarea name="long_description" id="" cols="10" rows="10" style="width: 100%;">{{ $post->long_description }}</textarea>
                     </div>
 
                     <div class="col-md-12 form-group">
@@ -71,6 +71,7 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#image').change(function (e) {

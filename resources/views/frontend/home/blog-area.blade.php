@@ -27,7 +27,7 @@
                             <li class="d-flex align-items-center"><a href="#">130 Likes</a></li>
                         </ul>
                         <div class="d-flex justify-content-between align-items-center pt-3">
-                            <a href="" class="btn theme-btn theme-btn-sm theme-btn-white">Read More <i class="la la-arrow-right icon ml-1"></i></a>
+                            <a href="{{ url('blog-details/'.$item->post_slug) }}" class="btn theme-btn theme-btn-sm theme-btn-white">Read More <i class="la la-arrow-right icon ml-1"></i></a>
                             <div class="share-wrap">
                                 <ul class="social-icons social-icons-styled">
                                     <li class="mr-0"><a href="#" class="facebook-bg"><i class="la la-facebook"></i></a></li>

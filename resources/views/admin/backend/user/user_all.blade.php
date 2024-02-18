@@ -53,9 +53,20 @@
                                         <span class="badge badge-pill bg-danger">{{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ route('edit.category',$item->id) }}" class="btn btn-info"><i class="bx bxs-edit"></i></a>
-                                    <a href="{{ route('delete.category',$item->id) }}" id="delete" class="btn btn-danger"><i class="bx bx-trash"></i></a>
+                                <td class="d-flex align-content-center">
+                                    @if($item->status == 1)
+                                        <form action="{{ route('admin.block.user',$item->id) }}" method="post">
+    {{--                                        @method('PUT')--}}
+                                            @csrf
+                                            <button type="submit" class="btn btn-info mx-2 text-white">Block....</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('admin.unblock.user',$item->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-info mx-2 text-white">Unblock</button>
+                                        </form>
+                                    @endif
+                                    <a href="{{ route('admin.user.delete',$item->id) }}" id="delete" class="btn btn-danger"> <i class="bx bx-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

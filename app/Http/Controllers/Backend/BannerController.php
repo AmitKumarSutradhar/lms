@@ -31,6 +31,10 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'position' => 'required',
+        ]);
+
         Banner::addNewBanner($request);
 
         $notification = array(

@@ -13,7 +13,7 @@ use function Illuminate\Database\Eloquent\Casts\get;
 class QuestionController extends Controller
 {
     public function UserQuestion(Request $request){
-        Question::insert([
+        UserQuestion::insert([
             'user_id' => Auth::user()->id,
             'course_id' => $request->course_id,
             'instructor_id' => $request->instructor_id,
@@ -37,13 +37,13 @@ class QuestionController extends Controller
     }
 
     public function QuestionDetails($id){
-        $question = Question::find($id);
-        $reply = Question::where('parent_id',$id)->orderBy('id','asc')->get();
+        $question = UserQuestion::find($id);
+        $reply = UserQuestion::where('parent_id',$id)->orderBy('id','asc')->get();
         return view('instructor.question.question_details',compact('question','reply'));
     }
 
     public function InstructorReply(Request $request){
-        Question::insert([
+        UserQuestion::insert([
             'course_id' => $request->course_id,
             'user_id' => $request->user_id,
             'instructor_id' => $request->instructor_id,

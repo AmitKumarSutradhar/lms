@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/change-password', [UserController::class, 'userChangePassword'])->name('user.change.password');
     Route::post('/user/change-update', [UserController::class, 'userUpdatePassword'])->name('user.password.update');
 
+    // Chat All Routes
+    Route::get('/live-chat',[UserController::class,'LiveChat'])->name('live.chat');
+
+
     //    Wishlist All Routes
     Route::get('user/wishlist',[WishListController::class,'AllWishlist'])->name('user.wishlist');
     Route::get('/get-wishlist-course',[WishListController::class,'GetWishListCourse']);
@@ -133,8 +137,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/smtp-settings','SmtpSettings')->name('smtp.settings');
         Route::post('/smtp-update','SmtpUpdate')->name('smtp.update');
 
-        Route::get('/site-settings','SiteSettings')->name('site.settings')->middleware('permission:site.setting');
-        Route::post('/site-update','SiteUpdate')->name('site.update')->middleware('permission:site.setting');
+        Route::get('/site-settings','SiteSettings')->name('site.settings')->middleware('permission:site.settings');
+        Route::post('/site-update','SiteUpdate')->name('site.update')->middleware('permission:site.settings');
     });
 
     //Routes for all orders in admin panel
@@ -165,6 +169,11 @@ Route::middleware(['auth','roles:admin'])->group(function (){
     Route::controller(ActiveUserController::class)->group(function (){
         Route::get('/admin/all-active-user','AdminAllActiveUser')->name('admin.all.user');
         Route::get('/admin/all-active-instructor','AdminAllActiveInstructor')->name('admin.all.instructor');
+
+        Route::post('/admin/block-user/{id}','AdminBlockUser')->name('admin.block.user');
+        Route::post('/admin/unblock-user/{id}','AdminUnblockBlockUser')->name('admin.unblock.user');
+        Route::get('/admin/delete-user/{id}','AdminDeleteUser')->name('admin.user.delete');
+
     });
 
 
@@ -378,6 +387,7 @@ Route::post('/mark-notification-as-read/{notification}',[CartController::class,'
 
 
 Route::post('/send-message',[ChatController::class,'SendMessage']);
+Route::get('/user-all',[ChatController::class,'GetAllUsers']);
 
 //End Route Accessible by Anyone
 

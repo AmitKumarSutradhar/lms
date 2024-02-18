@@ -16,7 +16,8 @@ class ReviewController extends Controller
         $instructor = $request->instructor_id;
 
         $request->validate([
-           'comment' => 'required',
+           'comment'    => 'required',
+           'rate'       => 'required',
        ]);
 
         Review::insert([
