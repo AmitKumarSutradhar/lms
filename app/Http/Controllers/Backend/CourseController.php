@@ -18,6 +18,11 @@ use function League\Flysystem\move;
 
 class CourseController extends Controller
 {
+    public function BrowseAllCourse(){
+        $courses = Course::orderBy('id','desc')->all();
+        return view('instructor.courses.all_courses',compact('courses'));
+    }
+
     public function AllCourse(){
         $id = Auth::user()->id;
         $courses = Course::where('instructor_id',$id)->orderBy('id','desc')->get();

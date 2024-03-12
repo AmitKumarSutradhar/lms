@@ -1,17 +1,17 @@
-<template>
+ <template>
     <div class="row"  style=" width: 100%; margin-bottom: 25px; ">
         <div class="col-md-2 myUser">
             <ul class="user">
                 <strong>Chat List</strong>
                 <hr>
-                <li>
-<!--                    <a href="">-->
-<!--                        <img src="/frontend/avatar-1.png"-->
-<!--                             alt="UserImage"-->
-<!--                             class="userImg"-->
-<!--                        />-->
-<!--                        <span class="username text-center">users</span>-->
-<!--                    </a>-->
+                <li v-for="(user, index) in users" :key="index" >
+                <a href="">
+                        <img v-if="user.role === 'user' " :src=" '/upload/user_images/'+user.photo"
+                             alt="UserImage"
+                             class="userImg"
+                        />
+                        <span class="username text-center">{{ user.name }}</span>
+                    </a>
                 </li>
 
             </ul>
@@ -109,6 +109,7 @@
         },
 
         created() {
+            this.getAllUsers();
         },
         methods:{
             getAllUsers(){

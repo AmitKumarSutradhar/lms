@@ -34,11 +34,11 @@
                                                 $availableQuiz = \Harishdurga\LaravelQuiz\Models\Quiz::where('course_id',$course->id)->where('section_id',$item->id)->first();
                                             @endphp
 
-                                            @if($availableQuiz)
-                                                <span class="mx-1"><a class="btn btn-warning" href="{{ route('view.quiz',$availableQuiz->id) }}" id="addQuizBtn($key)">View Quiz</a></span>
-                                            @else
-                                                <span class="mx-1"><a class="btn btn-warning" onclick="addQuizDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addQuizBtn($key)">Add Quiz</a></span>
-                                            @endif
+{{--                                            @if($availableQuiz)--}}
+{{--                                                <span class="mx-1"><a class="btn btn-warning" href="{{ route('view.quiz',$availableQuiz->id) }}" id="addQuizBtn($key)">View Quiz</a></span>--}}
+{{--                                            @else--}}
+{{--                                                <span class="mx-1"><a class="btn btn-warning" onclick="addQuizDiv({{ $course->id }}, {{ $item->id }}, 'lectureContainer{{ $key }}' )" id="addQuizBtn($key)">Add Quiz</a></span>--}}
+{{--                                            @endif--}}
                                             <form action="{{ route('delete.section',['id' => $item->id]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger px-2 mx-1 ms-auto">Delete Section</button>

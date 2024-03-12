@@ -56,8 +56,11 @@
                         <tfoot>
                         <tr>
                             <th>Sl No.</th>
-                            <th>Category Image</th>
-                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Invoice</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>

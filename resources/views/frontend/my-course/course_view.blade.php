@@ -883,7 +883,7 @@
                         <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
-                                    <p class="copy-desc">&copy; 2021 Aduca. All Rights Reserved. by <a href="https://techydevs.com/">TechyDevs</a></p>
+                                    <p class="copy-desc">&copy; 2024 Easy Learn School. All Rights Reserved. by <a href="#">Easy Learn School</a></p>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="d-flex flex-wrap align-items-center justify-content-end">
@@ -962,15 +962,21 @@
                                                             </div>
                                                         </div><!-- end course-item-content -->
                                                     </div><!-- end course-item-content-wrap -->
-{{--                                                    <form action="{{ route('quiz.take.test') }}" method="POST">--}}
-{{--                                                        <input type="hidden" name="course_id" value="{{ $course->course->id  }}">--}}
-{{--                                                        <input type="hidden" name="section_id" value="{{ $sec->id }}">--}}
 
-{{--                                                        <button type="submit" class="btn btn-success px-5">Take a test</button>--}}
-{{--                                                    </form>--}}
-                                                    <a href="{{ route('quiz.take.test', [ 'course_id' => $course->course->id, 'sec_id' =>$sec->id  ]) }}" class="btn btn-success px-5">Take a test</a>
                                                 </li>
                                             @endforeach
+
+                                            @php
+                                                $availableQuizCheck = \Harishdurga\LaravelQuiz\Models\Quiz::where('course_id',$course->course_id)->where('section_id',$sec->id);
+
+                                            @endphp
+
+{{--                                            @if(($availableQuiz->questions->count() > 0)  & !($availableQuiz->questions->count() === NULL))--}}
+
+{{--                                                <a href="{{ route('quiz.take.test', [ 'course_id' => $course->course->id, 'sec_id' =>$sec->id  ]) }}" class="btn btn-success px-5 m-3">Take a test</a>--}}
+{{--                                            @elseif--}}
+
+{{--                                            @endif--}}
                                         </ul>
                                     </div><!-- end card-body -->
                                 </div><!-- end collapse -->

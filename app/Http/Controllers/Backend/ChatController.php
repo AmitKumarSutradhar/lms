@@ -37,6 +37,6 @@ class ChatController extends Controller
             return [$chat->receiver, $chat->sender];
         })->unique();
 
-        return $chats;
+        return $user;
     }
 }

@@ -25,124 +25,130 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="business" role="tabpanel" aria-labelledby="business-tab">
                     <div class="row">
+
                         @foreach($courses as $course)
-                            <div class="col-lg-4 responsive-column-half">
-                            <div class="card card-item card-preview tooltipstered" data-tooltip-content="#tooltip_content_1{{$course->id}}">
-                                <div class="card-image">
-                                    <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
-                                        <img class="card-img-top lazy" src="{{ asset($course->course_image) }}" alt="Card image cap" style="">
-                                    </a>
-                                    @php
-                                        $amount = $course->selling_price - $course->discount_price;
-                                        $discount = ($amount/$course->selling_price) * 100;
-                                    @endphp
-                                    <div class="course-badge-labels">
-                                        @if ($course->bestseller == 1)
-                                            <div class="course-badge">Bestseller</div>
-                                        @else
-                                        @endif
+                            @if($course->count() > 0)
+                                <div class="col-lg-4 responsive-column-half">
+                                    <div class="card card-item card-preview tooltipstered" data-tooltip-content="#tooltip_content_1{{$course->id}}">
+                                        <div class="card-image">
+                                            <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
+                                                <img class="card-img-top lazy" src="{{ asset($course->course_image) }}" alt="Card image cap" style="">
+                                            </a>
+                                            @php
+                                                $amount = $course->selling_price - $course->discount_price;
+                                                $discount = ($amount/$course->selling_price) * 100;
+                                            @endphp
+                                            <div class="course-badge-labels">
+                                                @if ($course->bestseller == 1)
+                                                    <div class="course-badge">Bestseller</div>
+                                                @else
+                                                @endif
 
-                                        @if ($course->highestrated == 1)
-                                            <div class="course-badge sky-blue">Highest  Rated</div>
-                                        @else
-                                        @endif
+                                                @if ($course->highestrated == 1)
+                                                    <div class="course-badge sky-blue">Highest  Rated</div>
+                                                @else
+                                                @endif
 
-                                        @if ($course->discount_price == NULL)
-                                            <div class="course-badge blue">New</div>
-                                        @else
-                                            <div class="course-badge blue">{{ round($discount) }}%</div>
-                                        @endif
-                                    </div>
-                                </div><!-- end card-image -->
+                                                @if ($course->discount_price == NULL)
+                                                    <div class="course-badge blue">New</div>
+                                                @else
+                                                    <div class="course-badge blue">{{ round($discount) }}%</div>
+                                                @endif
+                                            </div>
+                                        </div><!-- end card-image -->
 
-                                @php
-                                    $reviewCount = \App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->get();
-                                    $average = \App\Models\Review::where('course_id',$course->id)->where('status',1)->avg('rating');
-                                @endphp
+                                        @php
+                                            $reviewCount = \App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->get();
+                                            $average = \App\Models\Review::where('course_id',$course->id)->where('status',1)->avg('rating');
+                                        @endphp
 
-                                <div class="card-body">
-                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
-                                    <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5>
-                                    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">{{ round($average,1) }}</span>
-                                            @if($average == 0)
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 1)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average > 1 && $average < 2)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-half-alt"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 2)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average > 2 && $average < 3)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-half-alt"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 3)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average > 3 && $average < 4)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-half-alt"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 4)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average>4 && $average<5)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-half-alt"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 5)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                            @endif
-                                        </div>
-                                        <span class="rating-total pl-1">({{ $reviewCount->count() }} ratings)</span>
-                                    </div><!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        @if ($course->discount_price == NULL)
-                                            <p class="card-price text-black font-weight-bold">${{ $course->selling_price }}  </p>
-                                        @else
-                                            <p class="card-price text-black font-weight-bold">${{ $course->discount_price }} <span class="before-price font-weight-medium">${{ $course->selling_price }}</span></p>
-                                        @endif
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" id="{{ $course->id }}" onclick="addToWishList(this.id)" title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
-                        </div><!-- end col-lg-4 -->
+                                        <div class="card-body">
+                                            <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6>
+                                            <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5>
+                                            <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
+                                            <div class="rating-wrap d-flex align-items-center py-2">
+                                                <div class="review-stars">
+                                                    <span class="rating-number">{{ round($average,1) }}</span>
+                                                    @if($average == 0)
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average == 1)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average > 1 && $average < 2)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-half-alt"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average == 2)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average > 2 && $average < 3)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-half-alt"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average == 3)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average > 3 && $average < 4)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-half-alt"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average == 4)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average>4 && $average<5)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-half-alt"></span>
+                                                        <span class="la la-star-o"></span>
+                                                    @elseif($average == 5)
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                    @endif
+                                                </div>
+                                                <span class="rating-total pl-1">({{ $reviewCount->count() }} ratings)</span>
+                                            </div><!-- end rating-wrap -->
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                @if ($course->discount_price == NULL)
+                                                    <p class="card-price text-black font-weight-bold">${{ $course->selling_price }}  </p>
+                                                @else
+                                                    <p class="card-price text-black font-weight-bold">${{ $course->discount_price }} <span class="before-price font-weight-medium">${{ $course->selling_price }}</span></p>
+                                                @endif
+                                                <div class="icon-element icon-element-sm shadow-sm cursor-pointer" id="{{ $course->id }}" onclick="addToWishList(this.id)" title="Add to Wishlist"><i class="la la-heart-o"></i></div>
+                                            </div>
+                                        </div><!-- end card-body -->
+                                    </div><!-- end card -->
+                                </div><!-- end col-lg-4 -->
+                            @else
+                            @endif
                         @endforeach
+
+
                     </div><!-- end row -->
                 </div><!-- end tab-pane -->
 
@@ -195,7 +201,7 @@
                 @endforeach
             </div><!-- end tab-content -->
             <div class="more-btn-box mt-4 text-center">
-                <a href="course-grid.html" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ml-1"></i></a>
+                <a href="{{ route('all.course') }}" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ml-1"></i></a>
             </div><!-- end more-btn-box -->
         </div><!-- end container -->
     </div><!-- end card-content-wrapper -->
@@ -208,7 +214,8 @@
 @endphp
 
 @foreach($courseData as $item)
-<div class="tooltip_templates">
+    @if($item->count() > 0)
+        <div class="tooltip_templates">
     <div id="tooltip_content_1{{ $item->id }}">
         <div class="card card-item">
             <div class="card-body">
@@ -216,17 +223,17 @@
                 <h5 class="card-title pb-1"><a href="course-details.html">{{ $item->course_name }}</a></h5>
                 <div class="d-flex align-items-center pb-1">
                     <h6 class="ribbon fs-14 mr-2">
-                        @if ($course->bestseller == 1)
+                        @if ($item->bestseller == 1)
                             <div class="course-badge">Bestseller</div>
                         @else
                         @endif
 
-                        @if ($course->highestrated == 1)
+                        @if ($item->highestrated == 1)
                             <div class="course-badge sky-blue">Highest Rated</div>
                         @else
                         @endif
 
-                        @if ($course->discount_price == NULL)
+                        @if ($item->discount_price == NULL)
                             <div class="course-badge blue">New</div>
                         @else
                             <div class="course-badge blue">{{ round($discount) }}%</div>
@@ -255,5 +262,7 @@
         </div><!-- end card -->
     </div>
 </div><!-- end tooltip_templates -->
+    @else
+        @endif
 
 @endforeach

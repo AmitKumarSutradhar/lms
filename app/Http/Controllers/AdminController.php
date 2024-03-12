@@ -115,7 +115,6 @@ class AdminController extends Controller
         return back()->with($notification);
     }
 
-
     public function BecomeInstructor(){
         return view('frontend.instructor.reg_instructor');
     }
@@ -148,6 +147,36 @@ class AdminController extends Controller
     public function AllInstructor(){
         $allInstructor = User::where('role','instructor')->latest()->get();
         return view('admin.backend.instructor.all_instructor',compact('allInstructor'));
+    }
+
+
+    public function AdminInstructorCreate(){
+        return view('admin.backend.instructor.create_instructor');
+    }
+
+    public function AdminInstructorStore(Request $request){
+        $request->validate([
+            'name' => ['required','string','max:255'],
+            'email' => ['required','string','unique:users'],
+        ]);
+
+        User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'instructor',
+            'status' => '1',
+        ]);
+
+        $notification = array(
+            'message' => 'Instructor Register Successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('all.instructor')->with($notification);
     }
 
     public function UpdateUserStatus(Request $request){

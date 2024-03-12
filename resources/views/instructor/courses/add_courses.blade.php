@@ -110,9 +110,10 @@
                         <textarea name="prerequisites" class="form-control" id="" cols="20" rows="10" style="width: 100%;"></textarea>
                     </div>
 
+
                     <div class="col-md-12 form-group">
                         <label for="input1" class="form-label">Course Description</label>
-                        <textarea name="description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;"></textarea>
+                        <textarea name="description" class="form-control" id="" cols="20" rows="10" style="width: 100%;"></textarea>
                     </div>
 
                     <h2>Course Goals</h2>

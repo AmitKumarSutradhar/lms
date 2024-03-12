@@ -56,8 +56,8 @@
                 <div class="menu-title">Instructors</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a>
-                </li>
+                <li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a></li>
+                <li> <a href="{{ route('admin.instructor.create') }}"><i class='bx bx-radio-circle'></i>Add Instructor</a></li>
             </ul>
         </li>
 
@@ -136,7 +136,7 @@
                 <div class="menu-title">Users</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.all.user') }}"><i class='bx bx-radio-circle'></i>All User</a>
+                <li> <a href="{{ route('admin.all.user') }}"><i class='bx bx-radio-circle'></i>Student</a>
                 </li>
                 <li> <a href="{{ route('admin.all.instructor') }}"><i class='bx bx-radio-circle'></i>Instructors</a>
                 </li>
@@ -166,7 +166,7 @@
         @endif
 
 
-        @if(Auth::user()->can('settings'))
+{{--        @if(Auth::user()->can('settings'))--}}
             <li>
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class="bx bxl-dev-to"></i>
@@ -180,11 +180,11 @@
                     </li>
                 </ul>
             </li>
-        @endif
+{{--        @endif--}}
 
-        @if(Auth::user()->can('site.settings'))
+{{--        @if(Auth::user()->can('site.settings'))--}}
 
-        @endif
+{{--        @endif--}}
 
         <li>
             <a class="has-arrow" href="javascript:;">

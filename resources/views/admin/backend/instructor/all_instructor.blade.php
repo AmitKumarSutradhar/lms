@@ -50,9 +50,9 @@
                                 <td>{{ $item->phone }}</td>
                                 <td>
                                     @if($item->status == 1)
-                                        <span class="btn btn-success">Active</span>
+                                        <span class="btn-sm  rounded bg-success p-1 text-white my-2">Active</span>
                                     @else
-                                        <span class="btn btn-danger">Inactive</span>
+                                        <span class="btn-sm rounded  bg-danger p-1 text-white my-2">Inactive</span>
                                     @endif
                                 </td>
                                 <td>

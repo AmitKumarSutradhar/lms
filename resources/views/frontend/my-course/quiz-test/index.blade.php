@@ -12,6 +12,7 @@
     $participant = \Harishdurga\LaravelQuiz\Models\QuizAuthor::where('author_id',$userId)->first();
     $quizAttemptCheck = \Harishdurga\LaravelQuiz\Models\QuizAttempt::where('participant_id',$participant->id)->where('quiz_id',$quiz->id)->first();
 @endphp
+
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-content-center">
         <div class=""></div>
@@ -37,6 +38,9 @@
         @csrf
 
         <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
+        <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
+        <input type="hidden" name="course_id" value="{{ $course_id }}">
+        <input type="hidden" name="section_id" value="{{ $section_id }}">
 {{--        <input type="hidden" name="quiz_questions[]" value="{{ $quizQuestions }}">--}}
 
         <!-- Questions -->

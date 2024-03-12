@@ -14,8 +14,9 @@
                 <div class="section-heading pb-3">
                     <h2 class="section__title">{{ $blog->post_title }}</h2>
                 </div>
+
                 <ul class="generic-list-item generic-list-item-arrow d-flex flex-wrap align-items-center">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                     <li><a href="blog-no-sidebar.html">Blog</a></li>
                     <li>{{ $blog->post_title }}</li>
                 </ul>
@@ -41,6 +42,10 @@
                 <div class="col-lg-8 mb-5">
                     <div class="card card-item">
                         <div class="card-body">
+                            <div class="row">
+{{--                                <img src="{{ $blog->post_image }}" alt="Avatar image" class="lazy">--}}
+                                <img src="{{ $blog->post_image }}" alt="" class="w-100f">
+                            </div>
                             <p class="card-text pb-3">{!! $blog->long_description !!}</p>
 
                             <div class="section-block"></div>

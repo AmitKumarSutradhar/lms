@@ -108,15 +108,15 @@
                                         <table class="table" style="font-weight: 600;">
                                             <tbody>
                                                 <tr>
-                                                    <td class="col-md-1">
+                                                    <td class="col-md-2">
                                                         <label for="">Image</label>
                                                     </td>
                                                     <td class="col-md-2">
                                                         <label for="">Course Name</label>
                                                     </td>
-                                                    <td class="col-md-2">
-                                                        <label for="">Category</label>
-                                                    </td>
+{{--                                                    <td class="col-md-2">--}}
+{{--                                                        <label for="">Category</label>--}}
+{{--                                                    </td>--}}
                                                     <td class="col-md-2">
                                                         <label for="">Instructor</label>
                                                     </td>
@@ -131,19 +131,20 @@
 
                                                 @foreach($orderItem as $item)
                                                     <tr>
-                                                        <td class="col-md-1">
+                                                        <td class="col-md-2">
                                                             <label><img src="{{ asset($item->course->course_image) }}" alt="" style="width: 50px;height: 50px;"></label>
                                                         </td>
-                                                        <td class="col-md-1">
+                                                        <td class="col-md-2">
                                                             <label>{{ $item->course->course_name }}</label>
                                                         </td>
-                                                        <td class="col-md-1">
-                                                            <label>{{ $item->category->category_name }}</label>
-                                                        </td>
-                                                        <td class="col-md-1">
+{{--                                                        <td class="col-md-1">--}}
+{{--                                                            <label>{{ $item->category }}</label>--}}
+{{--                                                            <label>{{ $item->category->category_name }}</label>--}}
+{{--                                                        </td>--}}
+                                                        <td class="col-md-2">
                                                             <label>{{ $item->instructor->name }}</label>
                                                         </td>
-                                                        <td class="col-md-1">
+                                                        <td class="col-md-2">
                                                             <label>{{ $item->price }}</label>
                                                         </td>
                                                     </tr>
@@ -154,9 +155,9 @@
                                                 @endforeach
 
                                             <tr>
-                                                <td colspan="4"></td>
-                                                <td class="col-md-3">
-                                                    <strong>Total Price : {{ $totalPrice }} </strong>
+                                                <td colspan="2"></td>
+                                                <td class="col-md-2">
+                                                    <strong>Total Price : {{ $totalPrice }}$ </strong>
                                                 </td>
                                             </tr>
 

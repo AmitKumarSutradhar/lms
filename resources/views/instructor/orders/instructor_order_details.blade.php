@@ -90,7 +90,7 @@
                                             @if($payment->status == 'pending')
                                                 <a href="{{ route('pending-confirm',$payment->id) }}" class="btn btn-block btn-success" id="confirm">Confirm Order</a>
                                             @elseif($payment->status == 'confirm')
-                                                <a href="" class="btn btn-block btn-success">Confirm Order</a>
+                                                <a href="javascript:" class="btn btn-sm btn-success">Confirmed</a>
                                             @endif
                                         </td>
                                     </tr>
@@ -114,9 +114,9 @@
                                                 <td class="col-md-2">
                                                     <label for="">Course Name</label>
                                                 </td>
-                                                <td class="col-md-2">
-                                                    <label for="">Category</label>
-                                                </td>
+{{--                                                <td class="col-md-2">--}}
+{{--                                                    <label for="">Category</label>--}}
+{{--                                                </td>--}}
                                                 <td class="col-md-2">
                                                     <label for="">Instructor</label>
                                                 </td>
@@ -137,9 +137,9 @@
                                                     <td class="col-md-1">
                                                         <label>{{ $item->course->course_name }}</label>
                                                     </td>
-                                                    <td class="col-md-1">
-                                                        <label>{{ $item->category->category_name }}</label>
-                                                    </td>
+{{--                                                    <td class="col-md-1">--}}
+{{--                                                        <label>{{ $item->category->category_name }}</label>--}}
+{{--                                                    </td>--}}
                                                     <td class="col-md-1">
                                                         <label>{{ $item->instructor->name }}</label>
                                                     </td>

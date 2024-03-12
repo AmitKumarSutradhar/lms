@@ -331,7 +331,7 @@
                                             <td class="pad"
                                                 style="padding-bottom:15px;padding-top:15px;text-align:center;width:100%;">
                                                 <h2 style="margin: 0; color: #4f5aba; direction: ltr; font-family: 'Noto Serif', Georgia, serif; font-size: 34px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 40.8px;">
-                                                    <span class="tinyMce-placeholder">Edu Square</span></h2>
+                                                    <span class="tinyMce-placeholder">Easy Learn School</span></h2>
                                             </td>
                                         </tr>
                                     </table>
@@ -418,9 +418,7 @@
                                         </tr>
                                     </table>
                                 </td>
-                                <td class="column column-2"
-                                    style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 25px; padding-left: 5px; padding-right: 20px; padding-top: 15px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-                                    width="66.66666666666667%">
+                                <td class="column column-2" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 25px; padding-left: 5px; padding-right: 20px; padding-top: 15px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="66.66666666666667%">
                                     <table border="0" cellpadding="0" cellspacing="0" class="heading_block block-1"
                                            role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
                                            width="100%">

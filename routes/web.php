@@ -71,13 +71,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/take-quiz-test-result/info',[QuizController::class,'QuizResultViewInfo'])->name('quiz.take.test.attempt.result.info');
 
 
+
+    Route::get('/user-review',[ReviewController::class,'UserDashboardReview'])->name('user.dashboard.review');
+
+
+
 });
 
 require __DIR__.'/auth.php';
 
 
 //Admin Group MiddleWare
-Route::middleware(['auth','roles:admin'])->group(function (){
+Route::middleware(['auth','usertype:admin'])->group(function (){
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
@@ -92,7 +97,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::post('/store-category','StoreCategory')->name('store.category');
         Route::get('/edit-category/{id}','EditCategory')->name('edit.category');
         Route::post('/update-category/{id}','UpdateCategory')->name('update.category');
-        Route::get('/delete-category/{id}','DeleteSubCategory')->name('delete.category');
+        Route::get('/delete-category/{id}','DeleteCategory')->name('delete.category');
     });
 
     //Admin Dashboard All Sub Category Routes
@@ -112,6 +117,8 @@ Route::middleware(['auth','roles:admin'])->group(function (){
     //Admin Dashboard Instructor All Routes
     Route::controller(AdminController::class)->group(function (){
         Route::get('/all-instructor','AllInstructor')->name('all.instructor');
+        Route::get('/add-instructor-by-admin','AdminInstructorCreate')->name('admin.instructor.create');
+        Route::post('/store-instructor-by-admin','AdminInstructorStore')->name('admin.instructor.store');
         Route::post('/user-status-update','UpdateUserStatus')->name('update.user.status');
     });
 
@@ -137,8 +144,10 @@ Route::middleware(['auth','roles:admin'])->group(function (){
         Route::get('/smtp-settings','SmtpSettings')->name('smtp.settings');
         Route::post('/smtp-update','SmtpUpdate')->name('smtp.update');
 
-        Route::get('/site-settings','SiteSettings')->name('site.settings')->middleware('permission:site.settings');
-        Route::post('/site-update','SiteUpdate')->name('site.update')->middleware('permission:site.settings');
+//        Route::get('/site-settings','SiteSettings')->name('site.settings')->middleware('permission:site.settings');
+        Route::get('/site-settings','SiteSettings')->name('site.settings');
+//        Route::post('/site-update','SiteUpdate')->name('site.update')->middleware('permission:site.settings');
+        Route::post('/site-update','SiteUpdate')->name('site.update');
     });
 
     //Routes for all orders in admin panel
@@ -243,7 +252,7 @@ Route::middleware(['auth','roles:admin'])->group(function (){
 
 
 //Instructor Group MiddleWare
-Route::middleware(['auth','roles:instructor'])->group(function (){
+Route::middleware(['auth','usertype:instructor'])->group(function (){
     Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
     Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');
     Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');

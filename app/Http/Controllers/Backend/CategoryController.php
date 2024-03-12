@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function StoreCategory(Request $request){
         $image = $request->file('image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370,246)->save('upload/category/'.$name_gen);
+        Image::make($image)->resize(380,280)->save('upload/category/'.$name_gen);
         $save_url = 'upload/category/'.$name_gen;
 
         Category::insert([
@@ -47,10 +47,14 @@ class CategoryController extends Controller
     public function UpdateCategory(Request $request){
         $cat_id = $request->id;
 
+        $item = Category::find($cat_id);
+//        $img = $item->image;
+
         if ($request->file('image')){
             $image = $request->file('image');
+//            unlink($img);
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(370,246)->save('upload/category/'.$name_gen);
+            Image::make($image)->resize(380,280)->save('upload/category/'.$name_gen);
             $save_url = 'upload/category/'.$name_gen;
 
             Category::find($cat_id)->update([

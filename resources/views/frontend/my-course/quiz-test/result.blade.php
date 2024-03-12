@@ -12,7 +12,7 @@
         <div class=""></div>
         <h1 class="text-center mb-4">{{ $quiz->name }}</h1>
         <div class="">
-            <h4>Total Score: {{ $quizAttemptScore . '/' .$quiz->total_marks }}</h4>
+{{--            <h4>Total Score: {{ $quizAttemptScore . '/' .$quiz->total_marks }}</h4>--}}
         </div>
     </div>
 

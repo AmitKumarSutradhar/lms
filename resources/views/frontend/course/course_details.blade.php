@@ -260,15 +260,15 @@
                                         <h5><a href="teacher-detail.html">{{ $course->user->name }}</a></h5>
                                         <span class="d-block lh-18 pt-2 pb-3">Joined {{ \Carbon\Carbon::parse($course->user->created_at)->diffForHumans() }}</span>
                                         <p class="text-black lh-18 pb-3">{{ $course['user']['email'] }}</p>
-                                        <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                        <div class="collapse" id="collapseMoreTwo">
-                                            <p class="pb-3">After learning the hard way, Tim was determined to become the best teacher he could, and to make his training as painless as possible, so that you, or anyone else with the desire to become a software developer, could become one.</p>
-                                            <p class="pb-3">If you want to become a financial analyst, a finance manager, an FP&A analyst, an investment banker, a business executive, an entrepreneur, a business intelligence analyst, a data analyst, or a data scientist, <strong class="text-black font-weight-semi-bold">Tim Buchalka's courses are the perfect course to start</strong>.</p>
-                                        </div>
-                                        <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseMoreTwo" role="button" aria-expanded="false" aria-controls="collapseMoreTwo">
-                                            <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
-                                            <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
-                                        </a>
+{{--                                        <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>--}}
+{{--                                        <div class="collapse" id="collapseMoreTwo">--}}
+{{--                                            <p class="pb-3">After learning the hard way, Tim was determined to become the best teacher he could, and to make his training as painless as possible, so that you, or anyone else with the desire to become a software developer, could become one.</p>--}}
+{{--                                            <p class="pb-3">If you want to become a financial analyst, a finance manager, an FP&A analyst, an investment banker, a business executive, an entrepreneur, a business intelligence analyst, a data analyst, or a data scientist, <strong class="text-black font-weight-semi-bold">Tim Buchalka's courses are the perfect course to start</strong>.</p>--}}
+{{--                                        </div>--}}
+{{--                                        <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseMoreTwo" role="button" aria-expanded="false" aria-controls="collapseMoreTwo">--}}
+{{--                                            <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>--}}
+{{--                                            <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>--}}
+{{--                                        </a>--}}
                                     </div>
                                 </div>
                             </div><!-- end instructor-wrap -->
@@ -816,7 +816,7 @@
                 </div><!-- end col-lg-9 -->
                 <div class="col-lg-3">
                     <div class="cta-btn-box text-right">
-                        <a href="become-a-teacher.html" class="btn theme-btn">Tech on Aduca <i class="la la-arrow-right icon ml-1"></i> </a>
+                        <a href="{{ route('become.instructor') }}" class="btn theme-btn">Tech on Easy Learn School <i class="la la-arrow-right icon ml-1"></i> </a>
                     </div>
                 </div><!-- end col-lg-3 -->
             </div><!-- end row -->

@@ -70,7 +70,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <p class="copy-desc">&copy; 2021 <a href="{{route('index')}}">Edu-Squar</a>. All Rights Reserved. by <a href="https://techydevs.com/">Amit Kumar</a></p>
+                    <p class="copy-desc">&copy; 2021 <a href="{{route('index')}}">Easy Learn School</a>. All Rights Reserved. by <a href="https://techydevs.com/">Amit Kumar</a></p>
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-6">
                     <div class="d-flex flex-wrap align-items-center justify-content-end">

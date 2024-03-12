@@ -108,7 +108,7 @@
 
                     <div class="col-md-12 form-group">
                         <label for="input1" class="form-label">Course Description</label>
-                        <textarea name="description" class="form-control" id="myeditorinstance" cols="10" rows="10" style="width: 100%;">{!! $course->description !!}</textarea>
+                        <textarea name="description" class="form-control" id="" cols="10" rows="10" style="width: 100%;">{!! $course->description !!}</textarea>
                     </div>
 
                     <hr>

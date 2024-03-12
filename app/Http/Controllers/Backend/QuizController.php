@@ -104,14 +104,6 @@ class QuizController extends Controller
     }
 
     public function TakeQuizTestView(Request $request, $course_id, $section_id){
-        $quiz = Quiz::where('course_id',$course_id)->where('section_id',$section_id)->first();
-        $quizQuestions = QuizQuestion::where('quiz_id',$quiz->id)->get();
-
-        return view('frontend.my-course.quiz-test.index',compact('course_id','section_id','quiz','quizQuestions'));
-
-    }
-
-    public function TakeQuizTestAttempt(Request $request){
         $userId = Auth::user()->id;
         $quizAuthor = QuizAuthor::find($userId);
 
@@ -123,13 +115,38 @@ class QuizController extends Controller
             ]);
         }
 
+        $quiz = Quiz::where('course_id',$course_id)->where('section_id',$section_id)->first();
+        $quizQuestions = QuizQuestion::where('quiz_id',$quiz->id)->get();
+
+        return view('frontend.my-course.quiz-test.index',compact('course_id','section_id','quiz','quizQuestions'));
+
+    }
+
+    public function TakeQuizTestAttempt(Request $request){
+        $userId = Auth::user()->id;
+        $quizAuthor = QuizAuthor::find($userId);
+
+        $courseId = $request->course_id;
+        $sectionId = $request->section_id;
+
+        if ($quizAuthor == NULL){
+            QuizAuthor::create([
+                'quiz_id' => $request->quiz_id,
+                'author_id' => $userId,
+                'author_type' =>'student',
+            ]);
+        }
+
         $participant = QuizAuthor::where('author_id',$userId)->first();
 
-        $quizAttemptCheck = QuizAttempt::where('participant_id',$participant->id)->where('quiz_id',$request->quiz_id)->first();
+        $quizAttemptCheck = QuizAttempt::where('participant_id',$participant->id)->where('quiz_id',$request->quiz_id)
+            ->where('course_id',$courseId)->where('section_id',$sectionId)->first();
 
         if ($quizAttemptCheck == NULL){
             QuizAttempt::create([
                 'quiz_id' => $request->quiz_id,
+                'course_id' => $request->course_id,
+                'section_id' => $request->course_id,
                 'participant_id' => $participant->id,
                 'participant_type' => get_class($participant)
             ]);
@@ -163,7 +180,7 @@ class QuizController extends Controller
 
     }
 
-    public function QuizResultViewInfo(Request $request){
+    public function QuizResultViewInfo(Request $request, QuizAttempt $quizAttempt){
         $quizId = $request->quiz_id;
         $courseId = $request->course_id;
         $sectionId = $request->section_id;
@@ -173,14 +190,21 @@ class QuizController extends Controller
         $quizAuthor = QuizAuthor::find($userId);
         $participant = QuizAuthor::where('author_id',$userId)->first();
 
-        $quizAttempt = QuizAttempt::where('quiz_id',$quizId)
-                                    ->where('participant_id',$participant->id)->first();
+//        $quizAttempt = QuizAttempt::where('quiz_id',$quizId)
+//                                    ->where('participant_id',$participant->id)
+//            ->where('course_id',$courseId)->where('section_id',$sectionId)->first();
+        $quizAttemptCheck = $quizAttempt->where('quiz_id',$quizId)
+                                    ->where('participant_id',$participant->id)
+                                    ->where('course_id',$courseId)
+                                    ->where('section_id',$sectionId)->first();
 
-
-        $quizAttemptAnswers = QuizAttemptAnswer::where('quiz_attempt_id',$quizAttempt->id)->get();
-        $quizAttemptScore = $quizAttempt->calculate_score();
-
-        return view('frontend.my-course.quiz-test.result',compact('courseId','sectionId','quiz', 'userId','quizAttemptAnswers','quizAttemptScore'));
+//        return $quizAttempt->id;
+        $quizAttemptAnswers = QuizAttemptAnswer::where('quiz_attempt_id',$quizAttemptCheck->id)->get();
+//        return $quizAttemptAnswers;
+//        $quizAttemptScore = $quizAttemptCheck->calculate_score();
+//        return $quizAttemptScore;
+        return view('frontend.my-course.quiz-test.result',compact('courseId','sectionId','quiz', 'userId','quizAttemptAnswers'));
+//        return view('frontend.my-course.quiz-test.result',compact('courseId','sectionId','quiz', 'userId','quizAttemptAnswers','quizAttemptScore'));
     }
 
 }
